@@ -23,7 +23,7 @@
 
 /*
     -------------------------------------------------------------------------
-    Select.js - Container
+    Select.js - Control
     -------------------------------------------------------------------------
 */
 div.select-js {
@@ -40,6 +40,28 @@ div.select-js div.control {
   overflow: hidden;
   border: var(--border-size) solid var(--container-border-color);
 }
+
+/*
+    -------------------------------------------------------------------------
+    Select.js - Drop-Down
+    -------------------------------------------------------------------------
+*/
 div.select-js div.drop-down {
   display: none;
+}
+div.select-js div.drop-down div.item {
+  padding: 10px;
+  border-bottom: var(--border-size) var(--color-black) dotted;
+}
+div.select-js div.drop-down div.item:last-child {
+  border-bottom: none;
+}
+div.select-js div.drop-down div.item:hover {
+  cursor: pointer;
+  background-color: lightgray;
+  transition: var(--transition);
+}
+div.select-js div.drop-down div.selected {
+  color: gray;
+  font-style: italic;
 }/*# sourceMappingURL=select.js.css.map */

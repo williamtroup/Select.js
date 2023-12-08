@@ -34,7 +34,7 @@
 
 /*
     -------------------------------------------------------------------------
-    Select.js - Container
+    Select.js - Control
     -------------------------------------------------------------------------
 */
 
@@ -53,8 +53,37 @@ div.select-js {
         overflow: hidden;
         border: var(--border-size) solid var(--container-border-color);
     }
+}
 
+
+/*
+    -------------------------------------------------------------------------
+    Select.js - Drop-Down
+    -------------------------------------------------------------------------
+*/
+
+div.select-js {
     div.drop-down {
         display: none;
+
+        div.item {
+            padding: 10px;
+            border-bottom: var(--border-size) var(--color-black) dotted;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: lightgray;
+                transition: var( --transition );
+            }
+        }
+        
+        div.selected {
+            color: gray;
+            font-style: italic;
+        }
     }
 }

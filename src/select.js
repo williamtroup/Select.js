@@ -141,7 +141,38 @@
     }
 
     function renderDropDownItems( dropDown, element ) {
+        var options = element.options,
+            optionsLength = options.length;
 
+        for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
+            var option = options[ optionIndex ];
+
+            renderDropDownItem( dropDown, options, option.text, option.selected, optionIndex );
+        }
+    }
+
+    function renderDropDownItem( dropDown, options, text, selected, optionIndex ) {
+        var item = createElement( "div", "item" );
+        item.innerHTML = text;
+        dropDown.appendChild( item );
+
+        if ( selected ) {
+            item.className += " selected";
+        }
+
+        item.onclick = function( e ) {
+            cancelBubble( e );
+
+            options[ optionIndex ].selected = !options[ optionIndex ].selected;
+
+            if ( options[ optionIndex ].selected ) {
+                item.className = "item selected";
+            } else {
+                item.className = "item";
+            }
+
+            //buildVisibleSelectedDropDownItems();
+        };
     }
 
 
