@@ -76,6 +76,8 @@
                         renderDropDownItems( controlElements.control, controlElements.dropDown, element );
                         renderSelectedItems( controlElements.control, controlElements.dropDown, element, bindingOptions, false );
                         buildDocumentEvents( controlElements.dropDown );
+
+                        fireCustomTrigger( bindingOptions.onRenderComplete, element );
                     }
 
                 } else {
@@ -307,6 +309,7 @@
     }
 
     function buildAttributeOptionCustomTriggers( options ) {
+        options.onRenderComplete = getDefaultFunction( options.onRenderComplete, null );
         options.onSelectedItemsChanged = getDefaultFunction( options.onSelectedItemsChanged, null );
 
         return options;
