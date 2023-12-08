@@ -14,7 +14,6 @@
 ( function() {
     var // Variables: Constructor Parameters
         _parameter_Document = null,
-        _parameter_Navigator = null,
         _parameter_Window = null,
 
         // Variables: Configuration
@@ -28,7 +27,6 @@
 
         // Variables: Elements
         _elements_Type = {},
-        _elements = [],
 
         // Variables: Attribute Names
         _attribute_Name_Options = "data-select-options";
@@ -67,16 +65,18 @@
                 var bindingOptions = getObjectFromString( bindingOptionsData );
 
                 if ( bindingOptions[ 0 ] && isDefinedObject( bindingOptions[ 1 ] ) ) {
-                    bindingOptions = bindingOptions[ 1 ];
+                    bindingOptions = buildAttributeOptions( bindingOptions[ 1 ] );
 
-                    element.removeAttribute( _attribute_Name_Options );
+                    if ( bindingOptions.render ) {
+                        element.removeAttribute( _attribute_Name_Options );
 
-                    var container = renderContainer( element );
-                        controlElements = renderControl( container );
-
-                    renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
-                    renderSelectedItems( controlElements[ 0 ], element.options );
-                    buildDocumentEvents( controlElements[ 0 ], controlElements[ 1 ], element );
+                        var container = renderContainer( element ),
+                            controlElements = renderControl( container, element );
+    
+                        renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
+                        renderSelectedItems( controlElements[ 0 ], controlElements[ 1 ], element.options );
+                        buildDocumentEvents( controlElements[ 1 ] );
+                    }
 
                 } else {
                     if ( !_configuration.safeMode ) {
@@ -132,12 +132,17 @@
         return container;
     }
 
-    function renderControl( container ) {
+    function renderControl( container, element ) {
         var control = createElement( "div", "control" );
         container.appendChild( control );
 
         var dropDown = createElement( "div", "drop-down" );
+        dropDown.style.display = "none";
         container.appendChild( dropDown );
+
+        control.onclick = function( e ) {
+            showDropDownMenu( e, control, dropDown, element );
+        };
 
         return [ control, dropDown ];
     }
@@ -146,38 +151,40 @@
         var options = element.options,
             optionsLength = options.length;
 
-        for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
-            var option = options[ optionIndex ];
+        dropDown.innerHTML = _string.empty;
 
-            renderDropDownItem( dropDown, options, option.text, option.selected, optionIndex );
+        for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
+            renderDropDownItem( control, dropDown, element, optionIndex );
         }
     }
 
-    function renderDropDownItem( dropDown, options, text, selected, optionIndex ) {
-        var item = createElement( "div", "item" );
-        item.innerHTML = text;
+    function renderDropDownItem( control, dropDown, element, optionIndex ) {
+        var item = createElement( "div", "item" ),
+            option = element.options[ optionIndex ];
+            
+        item.innerHTML = option.text;
         dropDown.appendChild( item );
 
-        if ( selected ) {
+        if ( option.selected ) {
             item.className += " selected";
         }
 
         item.onclick = function( e ) {
             cancelBubble( e );
 
-            options[ optionIndex ].selected = !options[ optionIndex ].selected;
+            element.options[ optionIndex ].selected = ! element.options[ optionIndex ].selected;
 
-            if ( options[ optionIndex ].selected ) {
+            if (  element.options[ optionIndex ].selected ) {
                 item.className = "item selected";
             } else {
                 item.className = "item";
             }
 
-            renderSelectedItems( control, options );
+            renderSelectedItems( control, dropDown, element.options );
         };
     }
 
-    function renderSelectedItems( control, options ) {
+    function renderSelectedItems( control, dropDown, options ) {
         var optionsLength = options.length,
             optionsSelected = false;
 
@@ -189,16 +196,7 @@
             if ( option.selected ) {
                 optionsSelected = true;
 
-                var selectedItem = createElement( "div", "selected-item" );
-                control.appendChild( selectedItem );
-
-                var selectedItemText = createElement( "span", "text" );
-                selectedItemText.innerHTML = option.text;
-                selectedItem.appendChild( selectedItemText );
-
-                var removeButton = createElement( "div", "remove" );
-                removeButton.innerHTML = "X";
-                selectedItem.appendChild( removeButton );
+                renderSelectedItem( control, dropDown, options, optionIndex );
             }
         }
 
@@ -209,9 +207,31 @@
         }
     }
 
-    function buildDocumentEvents( control, dropDown, element ) {
+    function renderSelectedItem( control, dropDown, options, optionIndex ) {
+        var selectedItem = createElement( "div", "selected-item" );
+        control.appendChild( selectedItem );
+
+        var selectedItemText = createElement( "span", "text" );
+        selectedItemText.innerHTML = options[ optionIndex ].text;
+        selectedItem.appendChild( selectedItemText );
+
+        var removeButton = createElement( "div", "remove" );
+        removeButton.innerHTML = "X";
+        selectedItem.appendChild( removeButton );
+
+        removeButton.onclick = function( e ) {
+            cancelBubble( e );
+
+            options[ optionIndex ].selected = false;
+
+            hideDropDownMenu( dropDown );
+            renderSelectedItems( control, dropDown, options );
+        };
+    }
+
+    function buildDocumentEvents( dropDown ) {
         var hideMenu = function() {
-            hideDropDownMenu( control, dropDown, element.options );
+            hideDropDownMenu( dropDown );
         };
 
         _parameter_Document.body.addEventListener( "click", hideMenu );
@@ -219,11 +239,19 @@
         _parameter_Window.addEventListener( "click", hideMenu );
     }
 
-    function hideDropDownMenu( control, dropDown, options ) {
+    function showDropDownMenu( e, control, dropDown, element ) {
+        cancelBubble( e );
+
+        if ( dropDown !== null && dropDown.style.display !== "block" ) {
+            dropDown.style.display = "block";
+
+            renderDropDownItems( control, dropDown, element );
+        }
+    }
+
+    function hideDropDownMenu( dropDown ) {
         if ( dropDown !== null && dropDown.style.display !== "none" ) {
             dropDown.style.display = "none";
-
-            renderSelectedItems( control, options );
         }
     }
 
@@ -315,6 +343,13 @@
         return result;
     }
 
+    function cancelBubble( e ) {
+        if ( e !== null ) {
+            e.preventDefault();
+            e.cancelBubble = true;
+        }
+    }
+
 
     /*
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -401,70 +436,6 @@
         return [ parsed, result ];
     }
 
-    function getClonedObject( object ) {
-        var json = JSON.stringify( object ),
-            result = JSON.parse( json );
-
-        return result;
-    }
-
-
-    /*
-     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     * String Handling
-     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     */
-
-    function newGuid() {
-        var result = [];
-
-        for ( var charIndex = 0; charIndex < 32; charIndex++ ) {
-            if ( charIndex === 8 || charIndex === 12 || charIndex === 16 || charIndex === 20 ) {
-                result.push( "-" );
-            }
-
-            var character = Math.floor( Math.random() * 16 ).toString( 16 );
-            result.push( character );
-        }
-
-        return result.join( _string.empty );
-    }
-
-
-    /*
-     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     * Public Functions:  Destroying
-     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     */
-
-    /**
-     * destroyAll().
-     * 
-     * Reverts all rendered elements back to their original state (without render attributes).
-     * 
-     * @public
-     * 
-     * @returns     {Object}                                                The Select.js class instance.
-     */
-    this.destroyAll = function() {
-        return this;
-    };
-
-    /**
-     * destroy().
-     * 
-     * Reverts an element back to its original state (without render attributes).
-     * 
-     * @public
-     * 
-     * @param       {string}    elementId                                   The ID of the DOM element to destroy.
-     * 
-     * @returns     {Object}                                                The Select.js class instance.
-     */
-    this.destroy = function( elementId ) {
-        return this;
-    };
-
 
     /*
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -523,9 +494,8 @@
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
 
-    ( function ( documentObject, navigatorObject, windowObject ) {
+    ( function ( documentObject, windowObject ) {
         _parameter_Document = documentObject;
-        _parameter_Navigator = navigatorObject;
         _parameter_Window = windowObject;
 
         buildDefaultConfiguration();
@@ -538,5 +508,5 @@
             _parameter_Window.$select = this;
         }
 
-    } ) ( document, navigator, window );
+    } ) ( document, window );
 } )();
