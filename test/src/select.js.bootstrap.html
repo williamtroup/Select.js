@@ -17,11 +17,7 @@
         </div>
 
         <div class="contents">
-            <select name="selectId1" id="selectId1" multiple="multiple" data-select-options="{ 'render': true }">
-                <option value="1" selected="selected">Value 1</option>
-                <option value="2">Value 2</option>
-                <option value="2">Value 3</option>
-            </select>
+            <select name="selectId1" id="selectId1" multiple="multiple" data-select-options="{ 'render': true }"></select>
 
             <select name="selectId2" id="selectId2" data-select-options="{ 'render': true }">
                 <option value="1">Value 1</option>
@@ -39,5 +35,26 @@
     <script>
         document.title += " v" + $select.getVersion();
         document.getElementById( "header" ).innerText += " - v" + $select.getVersion();
+
+        populateSelect();
+
+        function populateSelect() {
+            var select1 = document.getElementById( "selectId1" ),
+                select2 = document.getElementById( "selectId2" );
+
+            for ( var optionIndex = 0; optionIndex < 100; optionIndex++ ) {
+                var value = optionIndex + 1,
+                    option = document.createElement( "option" );
+
+                option.value = "value" + value;
+                option.text = "Value " + value;
+
+                if ( optionIndex === 0 ) {
+                    option.selected = true;
+                }
+
+                select1.add( option );
+            }
+        }
     </script>
 </html>
