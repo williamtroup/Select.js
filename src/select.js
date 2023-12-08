@@ -41,7 +41,7 @@
      */
 
     function render() {
-        var tagTypes = _configuration.highlightAllDomElementTypes,
+        var tagTypes = _configuration.domElementTypes,
             tagTypesLength = tagTypes.length;
 
         for ( var tagTypeIndex = 0; tagTypeIndex < tagTypesLength; tagTypeIndex++ ) {
@@ -341,12 +341,7 @@
     };
 
     function buildDefaultConfiguration() {
-        _configuration.safeMode = getDefaultBoolean( _configuration.safeMode, true );
-        _configuration.highlightAllDomElementTypes = getDefaultStringOrArray( _configuration.highlightAllDomElementTypes, [ "div", "code" ] );
-        _configuration.maximumButtons = getDefaultNumber( _configuration.maximumButtons, 2 );
-        _configuration.buttonsVisible = getDefaultBoolean( _configuration.buttonsVisible, true );
-        _configuration.buttonsOpenerText = getDefaultString( _configuration.buttonsOpenerText, "<" );
-        _configuration.buttonsCloserText = getDefaultString( _configuration.buttonsCloserText, ">" );
+        _configuration.domElementTypes = getDefaultStringOrArray( _configuration.domElementTypes, [ "select" ] );
     }
 
 
