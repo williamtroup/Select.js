@@ -82,10 +82,21 @@
     var dropDown = createElement("div", "drop-down");
     dropDown.style.display = "none";
     container.appendChild(dropDown);
-    control.onclick = function() {
-      showDropDownMenu(control, dropDown, element, bindingOptions);
-    };
+    if (!bindingOptions.showDropDownButton) {
+      control.onclick = function() {
+        showDropDownMenu(control, dropDown, element, bindingOptions);
+      };
+    }
     return {control:control, dropDown:dropDown};
+  }
+  function renderControlButton(control, dropDown, element, bindingOptions) {
+    if (bindingOptions.showDropDownButton) {
+      var dropDownButton = createElement("div", "button");
+      control.appendChild(dropDownButton);
+      dropDownButton.onclick = function() {
+        showDropDownMenu(control, dropDown, element, bindingOptions);
+      };
+    }
   }
   function renderDropDownItems(control, dropDown, element, bindingOptions) {
     var options = element.options;
@@ -133,6 +144,7 @@
     var optionsSelected = false;
     var multiSelectEnabled = element.hasAttribute("multiple");
     control.innerHTML = _string.empty;
+    renderControlButton(control, dropDown, element, bindingOptions);
     var optionIndex = 0;
     for (; optionIndex < optionsLength; optionIndex++) {
       var option = options[optionIndex];
@@ -195,6 +207,7 @@
     var options = !isDefinedObject(newOptions) ? {} : newOptions;
     options.render = getDefaultBoolean(options.render, true);
     options.dropDownShowDelay = getDefaultNumber(options.dropDownShowDelay, 50);
+    options.showDropDownButton = getDefaultBoolean(options.showDropDownButton, true);
     options = buildAttributeOptionStrings(options);
     return buildAttributeOptionCustomTriggers(options);
   }

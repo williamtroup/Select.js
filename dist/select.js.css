@@ -94,6 +94,22 @@ div.select-js div.control {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: relative;
+}
+div.select-js div.control div.button {
+  position: absolute;
+  border-right: 5px solid var(--color-black);
+  border-bottom: 5px solid var(--color-black);
+  height: 8px;
+  width: 8px;
+  right: 14px;
+  top: 14px;
+  transform: rotate(45deg);
+}
+div.select-js div.control div.button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: var(--transition);
 }
 div.select-js div.control div.selected-item {
   padding: var(--spacing);
