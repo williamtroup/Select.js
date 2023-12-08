@@ -13,6 +13,8 @@
   --color-black: #3b3a3a;
   --color-white: #F5F5F5;
   --color-gray: #BBBBBB;
+  --container-background-color: #e8e6e6;
+  --container-border-color: #3b3a3a;
   --border-radius: 0.5rem;
   --border-style-scrollbar: inset 0 0 6px --color-dark-gray;
   --border-size: 0.5px;
@@ -24,6 +26,20 @@
     Select.js - Container
     -------------------------------------------------------------------------
 */
+div.select-js {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+}
 div.select-js select {
   display: none !important;
+}
+div.select-js div.control {
+  background-color: var(--container-background-color);
+  border-radius: var(--border-radius);
+  padding: 15px;
+  overflow: hidden;
+  border: var(--border-size) solid var(--container-border-color);
+}
+div.select-js div.drop-down {
+  display: none;
 }/*# sourceMappingURL=select.js.css.map */

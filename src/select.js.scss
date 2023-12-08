@@ -18,6 +18,10 @@
     --color-white: #F5F5F5;
     --color-gray: #BBBBBB;
 
+    // Containers
+    --container-background-color: #e8e6e6;
+    --container-border-color: #3b3a3a;
+
     // Borders
     --border-radius: 0.5rem;
     --border-style-scrollbar: inset 0 0 6px --color-dark-gray;
@@ -35,7 +39,22 @@
 */
 
 div.select-js {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+
     select {
         display: none !important;
+    }
+
+    div.control {
+        background-color: var(--container-background-color);
+        border-radius: var(--border-radius);
+        padding: 15px;
+        overflow: hidden;
+        border: var(--border-size) solid var(--container-border-color);
+    }
+
+    div.drop-down {
+        display: none;
     }
 }

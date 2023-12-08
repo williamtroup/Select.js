@@ -69,7 +69,12 @@
                 if ( bindingOptions[ 0 ] && isDefinedObject( bindingOptions[ 1 ] ) ) {
                     bindingOptions = bindingOptions[ 1 ];
 
+                    element.removeAttribute( _attribute_Name_Options );
+
                     var container = renderContainer( element );
+                        controlElements = renderControl( container );
+
+                    renderDropDownItems( controlElements[ 1 ], element );
 
                 } else {
                     if ( !_configuration.safeMode ) {
@@ -123,6 +128,20 @@
         container.appendChild( element );
 
         return container;
+    }
+
+    function renderControl( container ) {
+        var control = createElement( "div", "control" );
+        container.appendChild( control );
+
+        var dropDown = createElement( "div", "drop-down" );
+        container.appendChild( dropDown );
+
+        return [ control, dropDown ];
+    }
+
+    function renderDropDownItems( dropDown, element ) {
+
     }
 
 
