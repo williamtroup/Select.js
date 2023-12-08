@@ -74,8 +74,8 @@
                             controlElements = renderControl( container, element, bindingOptions );
     
                         renderDropDownItems( controlElements );
-                        renderSelectedItems( controlElements, bindingOptions, false );
-                        buildDocumentEvents( controlElements, bindingOptions );
+                        renderSelectedItems( controlElements, false );
+                        buildDocumentEvents( controlElements );
 
                         fireCustomTrigger( bindingOptions.onRenderComplete, element );
                     }
@@ -151,12 +151,14 @@
         return {    
             control: control,
             dropDown: dropDown,
-            select: element
+            select: element,
+            bindingOptions: bindingOptions,
+            multiSelectEnabled: element.hasAttribute( "multiple" )
         };
     }
 
-    function renderControlButton( controlElements, bindingOptions ) {
-        if ( bindingOptions.showDropDownButton ) {
+    function renderControlButton( controlElements ) {
+        if ( controlElements.bindingOptions.showDropDownButton ) {
             var dropDownButton = createElement( "div", "button" );
             controlElements.control.appendChild( dropDownButton );
 
@@ -165,24 +167,23 @@
             }
 
             dropDownButton.onclick = function() {
-                showDropDownMenu( controlElements, bindingOptions );
+                showDropDownMenu( controlElements );
             };
         }
     }
 
-    function renderDropDownItems( controlElements, bindingOptions ) {
+    function renderDropDownItems( controlElements ) {
         var options = controlElements.select.options,
-            optionsLength = options.length,
-            multiSelectEnabled = controlElements.select.hasAttribute( "multiple" );
+            optionsLength = options.length;
 
             controlElements.dropDown.innerHTML = _string.empty;
 
         for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
-            renderDropDownItem( controlElements, optionIndex, multiSelectEnabled, bindingOptions );
+            renderDropDownItem( controlElements, optionIndex );
         }
     }
 
-    function renderDropDownItem( controlElements, optionIndex, multiSelectEnabled, bindingOptions ) {
+    function renderDropDownItem( controlElements, optionIndex ) {
         var item = createElement( "div", "item" ),
             option = controlElements.select.options[ optionIndex ];
             
@@ -196,7 +197,7 @@
         item.onclick = function( e ) {
             cancelBubble( e );
 
-            if ( !multiSelectEnabled ) {
+            if ( !controlElements.multiSelectEnabled ) {
                 var optionsLength = controlElements.select.options.length;
 
                 for ( var optionResetIndex = 0; optionResetIndex < optionsLength; optionResetIndex++ ) {
@@ -212,25 +213,24 @@
                 item.className = "item";
             }
 
-            renderSelectedItems( controlElements, bindingOptions );
+            renderSelectedItems( controlElements );
 
-            if ( !multiSelectEnabled ) {
-                hideDropDownMenu( controlElements, bindingOptions );
+            if ( !controlElements.multiSelectEnabled ) {
+                hideDropDownMenu( controlElements );
             }
         };
     }
 
-    function renderSelectedItems( controlElements, bindingOptions, callCustomTrigger ) {
+    function renderSelectedItems( controlElements, callCustomTrigger ) {
         callCustomTrigger = isDefinedBoolean( callCustomTrigger ) ? callCustomTrigger : true;
 
         var options = controlElements.select.options,
             optionsLength = options.length,
-            optionsSelected = false,
-            multiSelectEnabled = controlElements.select.hasAttribute( "multiple" );
+            optionsSelected = false;
 
         controlElements.control.innerHTML = _string.empty;
 
-        renderControlButton( controlElements, bindingOptions );
+        renderControlButton( controlElements );
 
         for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
             var option = options[ optionIndex ];
@@ -238,22 +238,22 @@
             if ( option.selected ) {
                 optionsSelected = true;
 
-                renderSelectedItem( controlElements, optionIndex, multiSelectEnabled, bindingOptions );
+                renderSelectedItem( controlElements, optionIndex );
             }
         }
 
         if ( !optionsSelected ) {
             var noItemsSelected = createElement( "div", "no-items-selected" );
-            noItemsSelected.innerHTML = bindingOptions.noItemsSelectedText;
+            noItemsSelected.innerHTML = controlElements.bindingOptions.noItemsSelectedText;
             controlElements.control.appendChild( noItemsSelected );
         }
 
         if ( callCustomTrigger ) {
-            fireCustomTrigger( bindingOptions.onSelectedItemsChanged );
+            fireCustomTrigger( controlElements.bindingOptions.onSelectedItemsChanged );
         }
     }
 
-    function renderSelectedItem( controlElements, optionIndex, multiSelectEnabled, bindingOptions ) {
+    function renderSelectedItem( controlElements, optionIndex ) {
         var selectedItem = createElement( "div", "selected-item" );
         controlElements.control.appendChild( selectedItem );
 
@@ -261,9 +261,9 @@
         selectedItemText.innerHTML = controlElements.select.options[ optionIndex ].text;
         selectedItem.appendChild( selectedItemText );
 
-        if ( multiSelectEnabled ) {
+        if ( controlElements.multiSelectEnabled ) {
             var removeButton = createElement( "div", "remove" );
-            removeButton.innerHTML = bindingOptions.removeText;
+            removeButton.innerHTML = controlElements.bindingOptions.removeText;
             selectedItem.appendChild( removeButton );
 
             removeButton.onclick = function( e ) {
@@ -271,15 +271,15 @@
     
                 controlElements.select.options[ optionIndex ].selected = false;
     
-                hideDropDownMenu( controlElements, bindingOptions );
-                renderSelectedItems( controlElements, bindingOptions );
+                hideDropDownMenu( controlElements );
+                renderSelectedItems( controlElements );
             };
         }
     }
 
-    function buildDocumentEvents( controlElements, bindingOptions ) {
+    function buildDocumentEvents( controlElements ) {
         var hideMenu = function() {
-            hideDropDownMenu( controlElements, bindingOptions );
+            hideDropDownMenu( controlElements );
         };
 
         _parameter_Document.body.addEventListener( "click", hideMenu );
@@ -287,26 +287,26 @@
         _parameter_Window.addEventListener( "click", hideMenu );
     }
 
-    function showDropDownMenu( controlElements, bindingOptions ) {
+    function showDropDownMenu( controlElements ) {
         if ( !isDropDownMenuVisible( controlElements ) ) {
             setTimeout( function() {
                 controlElements.dropDown.style.display = "block";
 
-                renderDropDownItems( controlElements, bindingOptions );
-                renderSelectedItems( controlElements, bindingOptions );
+                renderDropDownItems( controlElements );
+                renderSelectedItems( controlElements );
 
-            }, bindingOptions.dropDownShowDelay );
+            }, controlElements.bindingOptions.dropDownShowDelay );
 
         } else {
-            hideDropDownMenu( controlElements, bindingOptions );
+            hideDropDownMenu( controlElements );
         }
     }
 
-    function hideDropDownMenu( controlElements, bindingOptions ) {
+    function hideDropDownMenu( controlElements ) {
         if ( controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none" ) {
             controlElements.dropDown.style.display = "none";
 
-            renderSelectedItems( controlElements, bindingOptions );
+            renderSelectedItems( controlElements );
         }
     }
 
