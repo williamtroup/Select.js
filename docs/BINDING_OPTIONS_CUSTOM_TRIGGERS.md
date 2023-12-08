@@ -10,7 +10,7 @@ Below is a list of all the custom triggers supported in the "data-select-options
 ### options.onRenderComplete( *element* ):
 Fires when the rendering for a a DOM element is complete.
 <br>
-***Parameter:*** syntax: '*object*' - The DOM element that was rendered.
+***Parameter:*** element: '*object*' - The DOM element that was rendered.
 
 
 <br>
