@@ -30,7 +30,7 @@
             var controlElements = renderControl(container, element, bindingOptions);
             renderDropDownItems(controlElements);
             renderSelectedItems(controlElements, bindingOptions, false);
-            buildDocumentEvents(controlElements.dropDown);
+            buildDocumentEvents(controlElements, bindingOptions);
             fireCustomTrigger(bindingOptions.onRenderComplete, element);
           }
         } else {
@@ -93,6 +93,9 @@
     if (bindingOptions.showDropDownButton) {
       var dropDownButton = createElement("div", "button");
       controlElements.control.appendChild(dropDownButton);
+      if (isDropDownMenuVisible(controlElements)) {
+        dropDownButton.className += _string.space + "button-open";
+      }
       dropDownButton.onclick = function() {
         showDropDownMenu(controlElements, bindingOptions);
       };
@@ -133,7 +136,7 @@
       }
       renderSelectedItems(controlElements, bindingOptions);
       if (!multiSelectEnabled) {
-        hideDropDownMenu(controlElements.dropDown);
+        hideDropDownMenu(controlElements, bindingOptions);
       }
     };
   }
@@ -175,33 +178,38 @@
       removeButton.onclick = function(e) {
         cancelBubble(e);
         controlElements.select.options[optionIndex].selected = false;
-        hideDropDownMenu(controlElements.dropDown);
+        hideDropDownMenu(controlElements, bindingOptions);
         renderSelectedItems(controlElements, bindingOptions);
       };
     }
   }
-  function buildDocumentEvents(dropDown) {
+  function buildDocumentEvents(controlElements, bindingOptions) {
     var hideMenu = function() {
-      hideDropDownMenu(dropDown);
+      hideDropDownMenu(controlElements, bindingOptions);
     };
     _parameter_Document.body.addEventListener("click", hideMenu);
     _parameter_Window.addEventListener("resize", hideMenu);
     _parameter_Window.addEventListener("click", hideMenu);
   }
   function showDropDownMenu(controlElements, bindingOptions) {
-    if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "block") {
+    if (!isDropDownMenuVisible(controlElements)) {
       setTimeout(function() {
         controlElements.dropDown.style.display = "block";
         renderDropDownItems(controlElements, bindingOptions);
+        renderSelectedItems(controlElements, bindingOptions);
       }, bindingOptions.dropDownShowDelay);
     } else {
-      hideDropDownMenu(controlElements.dropDown);
+      hideDropDownMenu(controlElements, bindingOptions);
     }
   }
-  function hideDropDownMenu(dropDown) {
-    if (dropDown !== null && dropDown.style.display !== "none") {
-      dropDown.style.display = "none";
+  function hideDropDownMenu(controlElements, bindingOptions) {
+    if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none") {
+      controlElements.dropDown.style.display = "none";
+      renderSelectedItems(controlElements, bindingOptions);
     }
+  }
+  function isDropDownMenuVisible(controlElements) {
+    return controlElements.dropDown !== null && controlElements.dropDown.style.display === "block";
   }
   function buildAttributeOptions(newOptions) {
     var options = !isDefinedObject(newOptions) ? {} : newOptions;

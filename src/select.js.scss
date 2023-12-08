@@ -140,6 +140,11 @@ div.select-js {
             }
         }
 
+        div.button-open {
+            transform: rotate(-135deg);
+            top: 18px;
+        }
+
         div.selected-item {
             padding: var(--spacing);
             background-color: var(--color-gray);
