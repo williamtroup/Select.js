@@ -10,6 +10,9 @@
 - Added a new binding option "showDropDownButton" (defaults to true), which states if a opening/closing button should be used for showing the drop-down menu.
 - Added a new binding option "noItemsSelectedText" (defaults to "There are no items selected"), which states the message to show when no items are selected.
 
+#### **Binding Options - Custom Triggers:**
+- The binding option custom trigger "onSelectedItemsChanged" now has all the values selected passed to it.
+
 #### **General Improvements:**
 - Internal cleanups to make passing DOM element object around a bit easier.
 - Adding new testing files to verify with Bootstrap.

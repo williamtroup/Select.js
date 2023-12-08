@@ -160,7 +160,7 @@
       controlElements.control.appendChild(noItemsSelected);
     }
     if (callCustomTrigger) {
-      fireCustomTrigger(controlElements.bindingOptions.onSelectedItemsChanged);
+      fireCustomTrigger(controlElements.bindingOptions.onSelectedItemsChanged, getValuesSelected(controlElements));
     }
   }
   function renderSelectedItem(controlElements, optionIndex) {
@@ -194,7 +194,7 @@
       setTimeout(function() {
         controlElements.dropDown.style.display = "block";
         renderDropDownItems(controlElements);
-        renderSelectedItems(controlElements);
+        renderSelectedItems(controlElements, false);
       }, controlElements.bindingOptions.dropDownShowDelay);
     } else {
       hideDropDownMenu(controlElements);
@@ -203,11 +203,24 @@
   function hideDropDownMenu(controlElements) {
     if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none") {
       controlElements.dropDown.style.display = "none";
-      renderSelectedItems(controlElements);
+      renderSelectedItems(controlElements, false);
     }
   }
   function isDropDownMenuVisible(controlElements) {
     return controlElements.dropDown !== null && controlElements.dropDown.style.display === "block";
+  }
+  function getValuesSelected(controlElements) {
+    var options = controlElements.select.options;
+    var optionsLength = options.length;
+    var optionValuesSelected = [];
+    var optionIndex = 0;
+    for (; optionIndex < optionsLength; optionIndex++) {
+      var option = options[optionIndex];
+      if (option.selected) {
+        optionValuesSelected.push(option.value);
+      }
+    }
+    return optionValuesSelected;
   }
   function buildAttributeOptions(newOptions) {
     var options = !isDefinedObject(newOptions) ? {} : newOptions;
