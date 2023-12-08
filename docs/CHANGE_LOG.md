@@ -16,6 +16,7 @@
 
 #### **Fixes:**
 - Fixed a fault that cause the drop-down menu to remain open when clicking in the main control again.
+- Fixed missing scrolling support for the drop-down menu.
 
 <br>
 
