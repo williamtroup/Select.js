@@ -65,7 +65,11 @@
 
             if ( isDefinedString( bindingOptionsData ) ) {
                 var bindingOptions = getObjectFromString( bindingOptionsData );
-                if ( isDefinedObject( bindingOptions ) ) {
+
+                if ( bindingOptions[ 0 ] && isDefinedObject( bindingOptions[ 1 ] ) ) {
+                    bindingOptions = bindingOptions[ 1 ];
+
+                    var container = renderContainer( element );
 
                 } else {
                     if ( !_configuration.safeMode ) {
@@ -83,6 +87,42 @@
         }
 
         return result;
+    }
+
+    function renderContainer( element ) {
+        var parentNode = element.parentNode,
+            parentNodeChildren = parentNode.children,
+            parentNodeChildrenLength = parentNodeChildren.length,
+            parentNodeNextChild = null,
+            findNextChild = false;
+
+        for ( var parentNodeChildIndex = 0; parentNodeChildIndex < parentNodeChildrenLength; parentNodeChildIndex++ ) {
+            var parentNodeChild = parentNodeChildren[ parentNodeChildIndex ];
+
+            if ( !findNextChild ) {
+                if ( parentNodeChild === element ) {
+                    findNextChild = true;
+                }
+
+            } else {
+                parentNodeNextChild = parentNodeChild;
+                break;
+            }
+        }
+
+        var container = createElement( "div", "select-js" );
+
+        if ( isDefined( parentNodeNextChild ) ) {
+            parentNode.insertBefore( container, parentNodeNextChild );
+        } else {
+            parentNode.appendChild( container );
+        }
+
+        parentNode.removeChild( element );
+
+        container.appendChild( element );
+
+        return container;
     }
 
 

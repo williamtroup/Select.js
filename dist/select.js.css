@@ -1,1 +1,29 @@
-/*# sourceMappingURL=select.js.css.map */
+/*
+ * Select.js Library v0.1.0
+ *
+ * Copyright 2023 Bunoon
+ * Released under the MIT License
+ */
+/*
+    -------------------------------------------------------------------------
+    Select.js - Variables
+    -------------------------------------------------------------------------
+*/
+:root {
+  --color-black: #3b3a3a;
+  --color-white: #F5F5F5;
+  --color-gray: #BBBBBB;
+  --border-radius: 0.5rem;
+  --border-style-scrollbar: inset 0 0 6px --color-dark-gray;
+  --border-size: 0.5px;
+  --transition: all .3s;
+}
+
+/*
+    -------------------------------------------------------------------------
+    Select.js - Container
+    -------------------------------------------------------------------------
+*/
+div.select-js select {
+  display: none !important;
+}/*# sourceMappingURL=select.js.css.map */
