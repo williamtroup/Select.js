@@ -263,6 +263,9 @@
             dropDown.style.display = "block";
 
             renderDropDownItems( control, dropDown, element );
+
+        } else {
+            hideDropDownMenu( dropDown );
         }
     }
 
