@@ -1,4 +1,4 @@
-/*! Select.js v0.1.0 | (c) Bunoon | MIT License */
+/*! Select.js v0.2.0 | (c) Bunoon | MIT License */
 (function() {
   function render() {
     var tagTypes = _configuration.domElementTypes;
@@ -28,9 +28,9 @@
             element.removeAttribute(_attribute_Name_Options);
             var container = renderContainer(element);
             var controlElements = renderControl(container, element, bindingOptions);
-            renderDropDownItems(controlElements.control, controlElements.dropDown, element);
-            renderSelectedItems(controlElements.control, controlElements.dropDown, element, bindingOptions, false);
-            buildDocumentEvents(controlElements.dropDown);
+            renderDropDownItems(controlElements);
+            renderSelectedItems(controlElements, false);
+            buildDocumentEvents(controlElements);
             fireCustomTrigger(bindingOptions.onRenderComplete, element);
           }
         } else {
@@ -82,123 +82,157 @@
     var dropDown = createElement("div", "drop-down");
     dropDown.style.display = "none";
     container.appendChild(dropDown);
-    control.onclick = function(e) {
-      showDropDownMenu(e, control, dropDown, element, bindingOptions);
-    };
-    return {control:control, dropDown:dropDown};
+    if (!bindingOptions.showDropDownButton) {
+      control.onclick = function() {
+        showDropDownMenu(control, dropDown, element, bindingOptions);
+      };
+    }
+    return {control:control, dropDown:dropDown, select:element, bindingOptions:bindingOptions, multiSelectEnabled:element.hasAttribute("multiple")};
   }
-  function renderDropDownItems(control, dropDown, element, bindingOptions) {
-    var options = element.options;
-    var optionsLength = options.length;
-    var multiSelectEnabled = element.hasAttribute("multiple");
-    dropDown.innerHTML = _string.empty;
-    var optionIndex = 0;
-    for (; optionIndex < optionsLength; optionIndex++) {
-      renderDropDownItem(control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions);
+  function renderControlButton(controlElements) {
+    if (controlElements.bindingOptions.showDropDownButton) {
+      var dropDownButton = createElement("div", "button");
+      controlElements.control.appendChild(dropDownButton);
+      if (isDropDownMenuVisible(controlElements)) {
+        dropDownButton.className += _string.space + "button-open";
+      }
+      dropDownButton.onclick = function() {
+        showDropDownMenu(controlElements);
+      };
     }
   }
-  function renderDropDownItem(control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions) {
+  function renderDropDownItems(controlElements) {
+    var options = controlElements.select.options;
+    var optionsLength = options.length;
+    controlElements.dropDown.innerHTML = _string.empty;
+    var optionIndex = 0;
+    for (; optionIndex < optionsLength; optionIndex++) {
+      renderDropDownItem(controlElements, optionIndex);
+    }
+  }
+  function renderDropDownItem(controlElements, optionIndex) {
     var item = createElement("div", "item");
-    var option = element.options[optionIndex];
+    var option = controlElements.select.options[optionIndex];
     item.innerHTML = option.text;
-    dropDown.appendChild(item);
+    controlElements.dropDown.appendChild(item);
     if (option.selected) {
       item.className += " selected";
     }
     item.onclick = function(e) {
       cancelBubble(e);
-      if (!multiSelectEnabled) {
-        var optionsLength = element.options.length;
+      if (!controlElements.multiSelectEnabled) {
+        var optionsLength = controlElements.select.options.length;
         var optionResetIndex = 0;
         for (; optionResetIndex < optionsLength; optionResetIndex++) {
-          element.options[optionResetIndex].selected = false;
+          controlElements.select.options[optionResetIndex].selected = false;
         }
       }
-      element.options[optionIndex].selected = !element.options[optionIndex].selected;
-      if (element.options[optionIndex].selected) {
+      controlElements.select.options[optionIndex].selected = !controlElements.select.options[optionIndex].selected;
+      if (controlElements.select.options[optionIndex].selected) {
         item.className = "item selected";
       } else {
         item.className = "item";
       }
-      renderSelectedItems(control, dropDown, element, bindingOptions);
-      if (!multiSelectEnabled) {
-        hideDropDownMenu(dropDown);
+      renderSelectedItems(controlElements);
+      if (!controlElements.multiSelectEnabled) {
+        hideDropDownMenu(controlElements);
       }
     };
   }
-  function renderSelectedItems(control, dropDown, element, bindingOptions, callCustomTrigger) {
+  function renderSelectedItems(controlElements, callCustomTrigger) {
     callCustomTrigger = isDefinedBoolean(callCustomTrigger) ? callCustomTrigger : true;
-    var options = element.options;
+    var options = controlElements.select.options;
     var optionsLength = options.length;
     var optionsSelected = false;
-    var multiSelectEnabled = element.hasAttribute("multiple");
-    control.innerHTML = _string.empty;
+    controlElements.control.innerHTML = _string.empty;
+    renderControlButton(controlElements);
     var optionIndex = 0;
     for (; optionIndex < optionsLength; optionIndex++) {
       var option = options[optionIndex];
       if (option.selected) {
         optionsSelected = true;
-        renderSelectedItem(control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions);
+        renderSelectedItem(controlElements, optionIndex);
       }
     }
     if (!optionsSelected) {
       var noItemsSelected = createElement("div", "no-items-selected");
-      noItemsSelected.innerHTML = "There are no items selected";
-      control.appendChild(noItemsSelected);
+      noItemsSelected.innerHTML = controlElements.bindingOptions.noItemsSelectedText;
+      controlElements.control.appendChild(noItemsSelected);
     }
     if (callCustomTrigger) {
-      fireCustomTrigger(bindingOptions.onSelectedItemsChanged);
+      fireCustomTrigger(controlElements.bindingOptions.onSelectedItemsChanged, getValuesSelected(controlElements));
     }
   }
-  function renderSelectedItem(control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions) {
+  function renderSelectedItem(controlElements, optionIndex) {
     var selectedItem = createElement("div", "selected-item");
-    control.appendChild(selectedItem);
+    controlElements.control.appendChild(selectedItem);
     var selectedItemText = createElement("span", "text");
-    selectedItemText.innerHTML = element.options[optionIndex].text;
+    selectedItemText.innerHTML = controlElements.select.options[optionIndex].text;
     selectedItem.appendChild(selectedItemText);
-    if (multiSelectEnabled) {
+    if (controlElements.multiSelectEnabled) {
       var removeButton = createElement("div", "remove");
-      removeButton.innerHTML = bindingOptions.removeText;
+      removeButton.innerHTML = controlElements.bindingOptions.removeText;
       selectedItem.appendChild(removeButton);
       removeButton.onclick = function(e) {
         cancelBubble(e);
-        element.options[optionIndex].selected = false;
-        hideDropDownMenu(dropDown);
-        renderSelectedItems(control, dropDown, element, bindingOptions);
+        controlElements.select.options[optionIndex].selected = false;
+        hideDropDownMenu(controlElements);
+        renderSelectedItems(controlElements);
       };
     }
   }
-  function buildDocumentEvents(dropDown) {
+  function buildDocumentEvents(controlElements) {
     var hideMenu = function() {
-      hideDropDownMenu(dropDown);
+      hideDropDownMenu(controlElements);
     };
     _parameter_Document.body.addEventListener("click", hideMenu);
     _parameter_Window.addEventListener("resize", hideMenu);
     _parameter_Window.addEventListener("click", hideMenu);
   }
-  function showDropDownMenu(e, control, dropDown, element, bindingOptions) {
-    setTimeout(function() {
-      if (dropDown !== null && dropDown.style.display !== "block") {
-        dropDown.style.display = "block";
-        renderDropDownItems(control, dropDown, element, bindingOptions);
-      } else {
-        hideDropDownMenu(dropDown);
-      }
-    }, 50);
-  }
-  function hideDropDownMenu(dropDown) {
-    if (dropDown !== null && dropDown.style.display !== "none") {
-      dropDown.style.display = "none";
+  function showDropDownMenu(controlElements) {
+    if (!isDropDownMenuVisible(controlElements)) {
+      setTimeout(function() {
+        controlElements.dropDown.style.display = "block";
+        renderDropDownItems(controlElements);
+        renderSelectedItems(controlElements, false);
+      }, controlElements.bindingOptions.dropDownShowDelay);
+    } else {
+      hideDropDownMenu(controlElements);
     }
+  }
+  function hideDropDownMenu(controlElements) {
+    if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none") {
+      controlElements.dropDown.style.display = "none";
+      renderSelectedItems(controlElements, false);
+    }
+  }
+  function isDropDownMenuVisible(controlElements) {
+    return controlElements.dropDown !== null && controlElements.dropDown.style.display === "block";
+  }
+  function getValuesSelected(controlElements) {
+    var options = controlElements.select.options;
+    var optionsLength = options.length;
+    var optionValuesSelected = [];
+    var optionIndex = 0;
+    for (; optionIndex < optionsLength; optionIndex++) {
+      var option = options[optionIndex];
+      if (option.selected) {
+        optionValuesSelected.push(option.value);
+      }
+    }
+    return optionValuesSelected;
   }
   function buildAttributeOptions(newOptions) {
     var options = !isDefinedObject(newOptions) ? {} : newOptions;
     options.render = getDefaultBoolean(options.render, true);
+    options.dropDownShowDelay = getDefaultNumber(options.dropDownShowDelay, 50);
+    options.showDropDownButton = getDefaultBoolean(options.showDropDownButton, true);
     options = buildAttributeOptionStrings(options);
     return buildAttributeOptionCustomTriggers(options);
   }
   function buildAttributeOptionStrings(options) {
     options.removeText = getDefaultString(options.removeText, "X");
+    options.noItemsSelectedText = getDefaultString(options.noItemsSelectedText, "There are no items selected");
     return options;
   }
   function buildAttributeOptionCustomTriggers(options) {
@@ -220,6 +254,9 @@
   }
   function isDefinedFunction(object) {
     return isDefined(object) && typeof object === "function";
+  }
+  function isDefinedNumber(object) {
+    return isDefined(object) && typeof object === "number";
   }
   function isDefinedArray(object) {
     return isDefinedObject(object) && object instanceof Array;
@@ -259,6 +296,9 @@
   }
   function getDefaultArray(value, defaultValue) {
     return isDefinedArray(value) ? value : defaultValue;
+  }
+  function getDefaultNumber(value, defaultValue) {
+    return isDefinedNumber(value) ? value : defaultValue;
   }
   function getDefaultStringOrArray(value, defaultValue) {
     if (isDefinedString(value)) {
@@ -310,7 +350,7 @@
     return this;
   };
   this.getVersion = function() {
-    return "0.1.0";
+    return "0.2.0";
   };
   (function(documentObject, windowObject) {
     _parameter_Document = documentObject;

@@ -1,5 +1,5 @@
 /*
- * Select.js Library v0.1.0
+ * Select.js Library v0.2.0
  *
  * Copyright 2023 Bunoon
  * Released under the MIT License
@@ -51,6 +51,17 @@ div.select-js {
     margin-bottom: var(--spacing);
     position: relative;
 
+    * {
+        box-sizing: content-box;
+        line-height: normal;
+
+        &::before,
+        &::after {
+            box-sizing: content-box;
+            line-height: normal;
+        }
+    }
+
     select {
         display: none !important;
     }
@@ -59,7 +70,8 @@ div.select-js {
         background-color: var(--container-background-color);
         border: var(--border-size) solid var(--container-border-color);
         border-radius: var(--border-radius);
-        padding: var(--spacing);
+        padding: calc( var(--spacing) - 2px );
+        padding-right: 32px;
         overflow: hidden;
     }
 }
@@ -76,7 +88,6 @@ div.select-js {
         background-color: var(--container-background-color-drop-down);
         border: var(--border-size) solid var(--container-border-color-drop-down);
         border-radius: var(--border-radius);
-        overflow: hidden;
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
@@ -86,6 +97,8 @@ div.select-js {
         max-height: 400px;
         margin-top: 2px;
         box-shadow: var(--spacing-shadow-size) var(--spacing-shadow-size) var(--spacing-shadow-size) var(--color-gray);
+        overflow-y: auto;
+        overflow-x: hidden;
 
         div.item {
             padding: var(--spacing);
@@ -121,12 +134,36 @@ div.select-js {
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        position: relative;
+
+        div.button {
+            position: absolute;
+            border-right: 5px solid var(--color-black);
+            border-bottom: 5px solid var(--color-black);
+            height: 8px;
+            width: 8px;
+            right: 14px;
+            top: 14px;
+            transform: rotate(45deg);
+
+            &:hover {
+                cursor: pointer;
+                opacity: 0.7;
+                transition: var(--transition);
+            }
+        }
+
+        div.button-open {
+            transform: rotate(-135deg);
+            top: 18px;
+        }
 
         div.selected-item {
             padding: var(--spacing);
             background-color: var(--color-gray);
             border-radius: var(--border-radius);
             display: inline-block;
+            margin: 2px;
             margin-right: var(--spacing);
 
             &:last-child {

@@ -16,5 +16,7 @@ Fires when the rendering for a a DOM element is complete.
 <br>
 <h1>For Item Selections:</h1>
 
-### options.onSelectedItemsChanged():
+### options.onSelectedItemsChanged( *values* ):
 Fires when the selected items have changed.
+<br>
+***Parameter:*** values: '*string[]*' - The values that have been selected.
