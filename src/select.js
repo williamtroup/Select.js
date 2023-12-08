@@ -74,7 +74,7 @@
                             controlElements = renderControl( container, element );
     
                         renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
-                        renderSelectedItems( controlElements[ 0 ], controlElements[ 1 ], element.options );
+                        renderSelectedItems( controlElements[ 0 ], controlElements[ 1 ], element );
                         buildDocumentEvents( controlElements[ 1 ] );
                     }
 
@@ -149,16 +149,17 @@
 
     function renderDropDownItems( control, dropDown, element ) {
         var options = element.options,
-            optionsLength = options.length;
+            optionsLength = options.length,
+            multiSelectEnabled = element.hasAttribute( "multiple" );
 
         dropDown.innerHTML = _string.empty;
 
         for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
-            renderDropDownItem( control, dropDown, element, optionIndex );
+            renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled );
         }
     }
 
-    function renderDropDownItem( control, dropDown, element, optionIndex ) {
+    function renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled ) {
         var item = createElement( "div", "item" ),
             option = element.options[ optionIndex ];
             
@@ -172,21 +173,35 @@
         item.onclick = function( e ) {
             cancelBubble( e );
 
+            if ( !multiSelectEnabled ) {
+                var optionsLength = element.options.length;
+
+                for ( var optionResetIndex = 0; optionResetIndex < optionsLength; optionResetIndex++ ) {
+                    element.options[ optionResetIndex ].selected = false;
+                }
+            }
+
             element.options[ optionIndex ].selected = ! element.options[ optionIndex ].selected;
 
-            if (  element.options[ optionIndex ].selected ) {
+            if ( element.options[ optionIndex ].selected ) {
                 item.className = "item selected";
             } else {
                 item.className = "item";
             }
 
-            renderSelectedItems( control, dropDown, element.options );
+            renderSelectedItems( control, dropDown, element );
+
+            if ( !multiSelectEnabled ) {
+                hideDropDownMenu( dropDown );
+            }
         };
     }
 
-    function renderSelectedItems( control, dropDown, options ) {
-        var optionsLength = options.length,
-            optionsSelected = false;
+    function renderSelectedItems( control, dropDown, element ) {
+        var options = element.options,
+            optionsLength = options.length,
+            optionsSelected = false,
+            multiSelectEnabled = element.hasAttribute( "multiple" );
 
         control.innerHTML = _string.empty;
 
@@ -196,7 +211,7 @@
             if ( option.selected ) {
                 optionsSelected = true;
 
-                renderSelectedItem( control, dropDown, options, optionIndex );
+                renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled );
             }
         }
 
@@ -207,26 +222,28 @@
         }
     }
 
-    function renderSelectedItem( control, dropDown, options, optionIndex ) {
+    function renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled ) {
         var selectedItem = createElement( "div", "selected-item" );
         control.appendChild( selectedItem );
 
         var selectedItemText = createElement( "span", "text" );
-        selectedItemText.innerHTML = options[ optionIndex ].text;
+        selectedItemText.innerHTML = element.options[ optionIndex ].text;
         selectedItem.appendChild( selectedItemText );
 
-        var removeButton = createElement( "div", "remove" );
-        removeButton.innerHTML = "X";
-        selectedItem.appendChild( removeButton );
+        if ( multiSelectEnabled ) {
+            var removeButton = createElement( "div", "remove" );
+            removeButton.innerHTML = "X";
+            selectedItem.appendChild( removeButton );
 
-        removeButton.onclick = function( e ) {
-            cancelBubble( e );
-
-            options[ optionIndex ].selected = false;
-
-            hideDropDownMenu( dropDown );
-            renderSelectedItems( control, dropDown, options );
-        };
+            removeButton.onclick = function( e ) {
+                cancelBubble( e );
+    
+                element.options[ optionIndex ].selected = false;
+    
+                hideDropDownMenu( dropDown );
+                renderSelectedItems( control, dropDown, element );
+            };
+        }
     }
 
     function buildDocumentEvents( dropDown ) {
