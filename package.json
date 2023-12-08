@@ -1,0 +1,27 @@
+{
+    "name": "jselect.js",
+    "title": "Select.js",
+    "description": "A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!",
+    "version": "0.1.0",
+    "main": "dist/select.js",
+    "author": {
+      "name": "Bunoon"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/williamtroup/Select.js"
+    },
+    "keywords": [
+      "javascript",
+      "css",
+      "select",
+      "drop-down",
+      "html5",
+      "multi-select",
+      "Select.js"
+    ],
+    "bugs": {
+      "url": "https://github.com/williamtroup/Select.js/issues"
+    },
+    "license": "MIT"
+  }
