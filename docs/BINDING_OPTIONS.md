@@ -20,3 +20,4 @@ Below are all the JSON properties that can be passed in the "data-select-options
 | Type: | Name: | Description: |
 | --- | --- | --- |
 | *string* | removeText | The text that should be shown for the remove button (defaults to "X".) |
+| *string* | noItemsSelectedText | The text that should be shown when no items are selected (defaults to "There are no items selected"). |

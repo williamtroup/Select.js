@@ -155,7 +155,7 @@
     }
     if (!optionsSelected) {
       var noItemsSelected = createElement("div", "no-items-selected");
-      noItemsSelected.innerHTML = "There are no items selected";
+      noItemsSelected.innerHTML = bindingOptions.noItemsSelectedText;
       controlElements.control.appendChild(noItemsSelected);
     }
     if (callCustomTrigger) {
@@ -213,6 +213,7 @@
   }
   function buildAttributeOptionStrings(options) {
     options.removeText = getDefaultString(options.removeText, "X");
+    options.noItemsSelectedText = getDefaultString(options.noItemsSelectedText, "There are no items selected");
     return options;
   }
   function buildAttributeOptionCustomTriggers(options) {
