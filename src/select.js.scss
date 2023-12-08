@@ -51,6 +51,17 @@ div.select-js {
     margin-bottom: var(--spacing);
     position: relative;
 
+    * {
+        box-sizing: content-box;
+        line-height: normal;
+
+        &::before,
+        &::after {
+            box-sizing: content-box;
+            line-height: normal;
+        }
+    }
+
     select {
         display: none !important;
     }

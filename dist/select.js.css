@@ -37,6 +37,14 @@ div.select-js {
   margin-bottom: var(--spacing);
   position: relative;
 }
+div.select-js * {
+  box-sizing: content-box;
+  line-height: normal;
+}
+div.select-js *::before, div.select-js *::after {
+  box-sizing: content-box;
+  line-height: normal;
+}
 div.select-js select {
   display: none !important;
 }
