@@ -61,9 +61,18 @@
         var result = true;
 
         if ( isDefined( element ) && element.hasAttribute( _attribute_Name_Options ) ) {
-            var bindingOptions = element.getAttribute( _attribute_Name_Options );
+            var bindingOptionsData = element.getAttribute( _attribute_Name_Options );
 
-            if ( isDefinedString( bindingOptions ) ) {
+            if ( isDefinedString( bindingOptionsData ) ) {
+                var bindingOptions = getObjectFromString( bindingOptionsData );
+                if ( isDefinedObject( bindingOptions ) ) {
+
+                } else {
+                    if ( !_configuration.safeMode ) {
+                        console.error( "The attribute '" + _attribute_Name_Options + "' is not a valid object." );
+                        result = false;
+                    }
+                }
 
             } else {
                 if ( !_configuration.safeMode ) {
@@ -85,7 +94,7 @@
 
     function buildAttributeOptions( newOptions ) {
         var options = !isDefinedObject( newOptions ) ? {} : newOptions;
-        options.showCopyButton = getDefaultBoolean( options.showCopyButton, true );
+        options.render = getDefaultBoolean( options.render, true );
         
         options = buildAttributeOptionStrings( options );
 
@@ -341,6 +350,7 @@
     };
 
     function buildDefaultConfiguration() {
+        _configuration.safeMode = getDefaultBoolean( _configuration.safeMode, true );
         _configuration.domElementTypes = getDefaultStringOrArray( _configuration.domElementTypes, [ "select" ] );
     }
 
