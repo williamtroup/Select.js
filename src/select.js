@@ -64,18 +64,18 @@
             if ( isDefinedString( bindingOptionsData ) ) {
                 var bindingOptions = getObjectFromString( bindingOptionsData );
 
-                if ( bindingOptions[ 0 ] && isDefinedObject( bindingOptions[ 1 ] ) ) {
-                    bindingOptions = buildAttributeOptions( bindingOptions[ 1 ] );
+                if ( bindingOptions.parsed && isDefinedObject( bindingOptions.result ) ) {
+                    bindingOptions = buildAttributeOptions( bindingOptions.result );
 
                     if ( bindingOptions.render ) {
                         element.removeAttribute( _attribute_Name_Options );
 
                         var container = renderContainer( element ),
-                            controlElements = renderControl( container, element );
+                            controlElements = renderControl( container, element, bindingOptions );
     
-                        renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
-                        renderSelectedItems( controlElements[ 0 ], controlElements[ 1 ], element );
-                        buildDocumentEvents( controlElements[ 1 ] );
+                        renderDropDownItems( controlElements.control, controlElements.dropDown, element );
+                        renderSelectedItems( controlElements.control, controlElements.dropDown, element, bindingOptions, false );
+                        buildDocumentEvents( controlElements.dropDown );
                     }
 
                 } else {
@@ -132,7 +132,7 @@
         return container;
     }
 
-    function renderControl( container, element ) {
+    function renderControl( container, element, bindingOptions ) {
         var control = createElement( "div", "control" );
         container.appendChild( control );
 
@@ -141,13 +141,16 @@
         container.appendChild( dropDown );
 
         control.onclick = function( e ) {
-            showDropDownMenu( e, control, dropDown, element );
+            showDropDownMenu( e, control, dropDown, element, bindingOptions );
         };
 
-        return [ control, dropDown ];
+        return {
+            control: control,
+            dropDown: dropDown
+        };
     }
 
-    function renderDropDownItems( control, dropDown, element ) {
+    function renderDropDownItems( control, dropDown, element, bindingOptions ) {
         var options = element.options,
             optionsLength = options.length,
             multiSelectEnabled = element.hasAttribute( "multiple" );
@@ -155,11 +158,11 @@
         dropDown.innerHTML = _string.empty;
 
         for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
-            renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled );
+            renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions );
         }
     }
 
-    function renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled ) {
+    function renderDropDownItem( control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions ) {
         var item = createElement( "div", "item" ),
             option = element.options[ optionIndex ];
             
@@ -189,7 +192,7 @@
                 item.className = "item";
             }
 
-            renderSelectedItems( control, dropDown, element );
+            renderSelectedItems( control, dropDown, element, bindingOptions );
 
             if ( !multiSelectEnabled ) {
                 hideDropDownMenu( dropDown );
@@ -197,7 +200,9 @@
         };
     }
 
-    function renderSelectedItems( control, dropDown, element ) {
+    function renderSelectedItems( control, dropDown, element, bindingOptions, callCustomTrigger ) {
+        callCustomTrigger = isDefinedBoolean( callCustomTrigger ) ? callCustomTrigger : true;
+
         var options = element.options,
             optionsLength = options.length,
             optionsSelected = false,
@@ -211,7 +216,7 @@
             if ( option.selected ) {
                 optionsSelected = true;
 
-                renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled );
+                renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions );
             }
         }
 
@@ -220,9 +225,13 @@
             noItemsSelected.innerHTML = "There are no items selected";
             control.appendChild( noItemsSelected );
         }
+
+        if ( callCustomTrigger ) {
+            fireCustomTrigger( bindingOptions.onSelectedItemsChanged );
+        }
     }
 
-    function renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled ) {
+    function renderSelectedItem( control, dropDown, element, optionIndex, multiSelectEnabled, bindingOptions ) {
         var selectedItem = createElement( "div", "selected-item" );
         control.appendChild( selectedItem );
 
@@ -232,7 +241,7 @@
 
         if ( multiSelectEnabled ) {
             var removeButton = createElement( "div", "remove" );
-            removeButton.innerHTML = "X";
+            removeButton.innerHTML = bindingOptions.removeText;
             selectedItem.appendChild( removeButton );
 
             removeButton.onclick = function( e ) {
@@ -241,7 +250,7 @@
                 element.options[ optionIndex ].selected = false;
     
                 hideDropDownMenu( dropDown );
-                renderSelectedItems( control, dropDown, element );
+                renderSelectedItems( control, dropDown, element, bindingOptions );
             };
         }
     }
@@ -256,13 +265,13 @@
         _parameter_Window.addEventListener( "click", hideMenu );
     }
 
-    function showDropDownMenu( e, control, dropDown, element ) {
+    function showDropDownMenu( e, control, dropDown, element, bindingOptions ) {
         cancelBubble( e );
 
         if ( dropDown !== null && dropDown.style.display !== "block" ) {
             dropDown.style.display = "block";
 
-            renderDropDownItems( control, dropDown, element );
+            renderDropDownItems( control, dropDown, element, bindingOptions );
 
         } else {
             hideDropDownMenu( dropDown );
@@ -292,13 +301,13 @@
     }
 
     function buildAttributeOptionStrings( options ) {
-        options.copyButtonText = getDefaultString( options.copyButtonText, "Copy" );
+        options.removeText = getDefaultString( options.removeText, "X" );
 
         return options;
     }
 
     function buildAttributeOptionCustomTriggers( options ) {
-        options.onCopy = getDefaultFunction( options.onCopy, null );
+        options.onSelectedItemsChanged = getDefaultFunction( options.onSelectedItemsChanged, null );
 
         return options;
     }
@@ -328,10 +337,6 @@
 
     function isDefinedFunction( object ) {
         return isDefined( object ) && typeof object === "function";
-    }
-
-    function isDefinedNumber( object ) {
-        return isDefined( object ) && typeof object === "number";
     }
 
     function isDefinedArray( object ) {
@@ -406,10 +411,6 @@
         return isDefinedArray( value ) ? value : defaultValue;
     }
 
-    function getDefaultNumber( value, defaultValue ) {
-        return isDefinedNumber( value ) ? value : defaultValue;
-    }
-
     function getDefaultStringOrArray( value, defaultValue ) {
         if ( isDefinedString( value ) ) {
             value = value.split( _string.space );
@@ -453,7 +454,10 @@
             }
         }
 
-        return [ parsed, result ];
+        return {
+            parsed: parsed,
+            result: result
+        };
     }
 
 
