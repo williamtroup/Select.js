@@ -48,6 +48,9 @@ div.select-js div.control {
 */
 div.select-js div.drop-down {
   display: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 div.select-js div.drop-down div.item {
   padding: 10px;
@@ -77,6 +80,9 @@ div.select-js div.control div.selected-item {
   border-radius: var(--border-radius);
   display: inline-block;
   margin-right: 10px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 div.select-js div.control div.selected-item:last-child {
   margin-right: 0;

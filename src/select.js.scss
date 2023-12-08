@@ -65,6 +65,9 @@ div.select-js {
 div.select-js {
     div.drop-down {
         display: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
 
         div.item {
             padding: 10px;
@@ -103,6 +106,9 @@ div.select-js {
             border-radius: var(--border-radius);
             display: inline-block;
             margin-right: 10px;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
             &:last-child {
                 margin-right: 0;
