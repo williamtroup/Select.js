@@ -82,8 +82,8 @@
     var dropDown = createElement("div", "drop-down");
     dropDown.style.display = "none";
     container.appendChild(dropDown);
-    control.onclick = function(e) {
-      showDropDownMenu(e, control, dropDown, element, bindingOptions);
+    control.onclick = function() {
+      showDropDownMenu(control, dropDown, element, bindingOptions);
     };
     return {control:control, dropDown:dropDown};
   }
@@ -176,15 +176,15 @@
     _parameter_Window.addEventListener("resize", hideMenu);
     _parameter_Window.addEventListener("click", hideMenu);
   }
-  function showDropDownMenu(e, control, dropDown, element, bindingOptions) {
-    setTimeout(function() {
-      if (dropDown !== null && dropDown.style.display !== "block") {
+  function showDropDownMenu(control, dropDown, element, bindingOptions) {
+    if (dropDown !== null && dropDown.style.display !== "block") {
+      setTimeout(function() {
         dropDown.style.display = "block";
         renderDropDownItems(control, dropDown, element, bindingOptions);
-      } else {
-        hideDropDownMenu(dropDown);
-      }
-    }, 50);
+      }, bindingOptions.dropDownShowDelay);
+    } else {
+      hideDropDownMenu(dropDown);
+    }
   }
   function hideDropDownMenu(dropDown) {
     if (dropDown !== null && dropDown.style.display !== "none") {
@@ -194,6 +194,7 @@
   function buildAttributeOptions(newOptions) {
     var options = !isDefinedObject(newOptions) ? {} : newOptions;
     options.render = getDefaultBoolean(options.render, true);
+    options.dropDownShowDelay = getDefaultNumber(options.dropDownShowDelay, 50);
     options = buildAttributeOptionStrings(options);
     return buildAttributeOptionCustomTriggers(options);
   }
@@ -220,6 +221,9 @@
   }
   function isDefinedFunction(object) {
     return isDefined(object) && typeof object === "function";
+  }
+  function isDefinedNumber(object) {
+    return isDefined(object) && typeof object === "number";
   }
   function isDefinedArray(object) {
     return isDefinedObject(object) && object instanceof Array;
@@ -259,6 +263,9 @@
   }
   function getDefaultArray(value, defaultValue) {
     return isDefinedArray(value) ? value : defaultValue;
+  }
+  function getDefaultNumber(value, defaultValue) {
+    return isDefinedNumber(value) ? value : defaultValue;
   }
   function getDefaultStringOrArray(value, defaultValue) {
     if (isDefinedString(value)) {
