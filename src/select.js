@@ -76,6 +76,7 @@
 
                     renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
                     renderSelectedItems( controlElements[ 0 ], element.options );
+                    buildDocumentEvents( controlElements[ 0 ], controlElements[ 1 ], element );
 
                 } else {
                     if ( !_configuration.safeMode ) {
@@ -199,6 +200,30 @@
                 removeButton.innerHTML = "X";
                 selectedItem.appendChild( removeButton );
             }
+        }
+
+        if ( !optionsSelected ) {
+            var noItemsSelected = createElement( "div", "no-items-selected" );
+            noItemsSelected.innerHTML = "There are no items selected";
+            control.appendChild( noItemsSelected );
+        }
+    }
+
+    function buildDocumentEvents( control, dropDown, element ) {
+        var hideMenu = function() {
+            hideDropDownMenu( control, dropDown, element.options );
+        };
+
+        _parameter_Document.body.addEventListener( "click", hideMenu );
+        _parameter_Window.addEventListener( "resize", hideMenu );
+        _parameter_Window.addEventListener( "click", hideMenu );
+    }
+
+    function hideDropDownMenu( control, dropDown, options ) {
+        if ( dropDown !== null && dropDown.style.display !== "none" ) {
+            dropDown.style.display = "none";
+
+            renderSelectedItems( control, options );
         }
     }
 

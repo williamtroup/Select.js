@@ -12,7 +12,8 @@
 :root {
   --color-black: #3b3a3a;
   --color-white: #F5F5F5;
-  --color-gray: #BBBBBB;
+  --color-gray: #AAAAAA;
+  --color-light-gray: #CCCCCC;
   --container-background-color: #e8e6e6;
   --container-border-color: #3b3a3a;
   --border-radius: 0.5rem;
@@ -39,6 +40,7 @@ div.select-js div.control {
   padding: 10px;
   overflow: hidden;
   border: var(--border-size) solid var(--container-border-color);
+  margin-bottom: 10px;
 }
 
 /*
@@ -74,15 +76,17 @@ div.select-js div.drop-down div.selected {
     Select.js - Selected Items
     -------------------------------------------------------------------------
 */
+div.select-js div.control {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 div.select-js div.control div.selected-item {
   padding: 10px;
   background-color: var(--color-gray);
   border-radius: var(--border-radius);
   display: inline-block;
   margin-right: 10px;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 div.select-js div.control div.selected-item:last-child {
   margin-right: 0;
@@ -99,4 +103,12 @@ div.select-js div.control div.selected-item div.remove:hover {
   cursor: pointer;
   opacity: 0.7;
   transition: var(--transition);
+}
+div.select-js div.control div.no-items-selected {
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  font-style: italic;
+  color: var(--color-black);
+  padding: 10px;
+  display: inline-block;
 }/*# sourceMappingURL=select.js.css.map */

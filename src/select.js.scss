@@ -16,7 +16,8 @@
     // Colors
     --color-black: #3b3a3a;
     --color-white: #F5F5F5;
-    --color-gray: #BBBBBB;
+    --color-gray: #AAAAAA;
+    --color-light-gray: #CCCCCC;
 
     // Containers
     --container-background-color: #e8e6e6;
@@ -52,6 +53,7 @@ div.select-js {
         padding: 10px;
         overflow: hidden;
         border: var(--border-size) solid var(--container-border-color);
+        margin-bottom: 10px;
     }
 }
 
@@ -100,15 +102,16 @@ div.select-js {
 
 div.select-js {
     div.control {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
         div.selected-item {
             padding: 10px;
             background-color: var(--color-gray);
             border-radius: var(--border-radius);
             display: inline-block;
             margin-right: 10px;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
 
             &:last-child {
                 margin-right: 0;
@@ -129,6 +132,15 @@ div.select-js {
                     transition: var( --transition );
                 }
             }
+        }
+
+        div.no-items-selected {
+            background-color: var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-style: italic;
+            color: var(--color-black);
+            padding: 10px;
+            display: inline-block;
         }
     }
 }
