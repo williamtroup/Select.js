@@ -10,7 +10,7 @@ Select.js
 </h1>
 
 > <p align="center">A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!</p>
-> <p align="center">v0.1.1</p>
+> <p align="center">v0.1.0</p>
 <br />
 
 ![Select.js](docs/images/main.png)
