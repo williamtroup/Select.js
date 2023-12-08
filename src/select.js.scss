@@ -35,6 +35,7 @@
 
     // Spacing/Sizing
     --spacing-shadow-size: 4px;
+    --spacing: 8px;
 }
 
 
@@ -47,7 +48,7 @@
 div.select-js {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing);
     position: relative;
 
     select {
@@ -58,7 +59,7 @@ div.select-js {
         background-color: var(--container-background-color);
         border: var(--border-size) solid var(--container-border-color);
         border-radius: var(--border-radius);
-        padding: 10px;
+        padding: var(--spacing);
         overflow: hidden;
     }
 }
@@ -87,7 +88,7 @@ div.select-js {
         box-shadow: var(--spacing-shadow-size) var(--spacing-shadow-size) var(--spacing-shadow-size) var(--color-gray);
 
         div.item {
-            padding: 10px;
+            padding: var(--spacing);
             border-bottom: var(--border-size) var(--color-black) dotted;
 
             &:last-child {
@@ -96,13 +97,13 @@ div.select-js {
 
             &:hover {
                 cursor: pointer;
-                background-color: lightgray;
+                background-color: var(--color-light-gray);
                 transition: var( --transition );
             }
         }
         
         div.selected {
-            color: gray;
+            color: var(--color-gray);
             font-style: italic;
         }
     }
@@ -122,11 +123,11 @@ div.select-js {
         user-select: none;
 
         div.selected-item {
-            padding: 10px;
+            padding: var(--spacing);
             background-color: var(--color-gray);
             border-radius: var(--border-radius);
             display: inline-block;
-            margin-right: 10px;
+            margin-right: var(--spacing);
 
             &:last-child {
                 margin-right: 0;
@@ -137,14 +138,14 @@ div.select-js {
             }
 
             div.remove {
-                margin-left: 10px;
+                margin-left: var(--spacing);
                 display: inline-block;
                 font-weight: bold;
 
                 &:hover {
                     cursor: pointer;
                     opacity: 0.7;
-                    transition: var( --transition );
+                    transition: var(--transition);
                 }
             }
         }
@@ -154,7 +155,7 @@ div.select-js {
             border-radius: var(--border-radius);
             font-style: italic;
             color: var(--color-black);
-            padding: 10px;
+            padding: var(--spacing);
             display: inline-block;
         }
     }
