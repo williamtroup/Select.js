@@ -10,6 +10,7 @@ Below are all the JSON properties that can be passed in the "data-select-options
 | --- | --- | --- |
 | *boolean* | render | States if the element should be rendered (defaults to true). |
 | *number* | dropDownShowDelay | States the milliseconds that it should wait before showing the drop-down menu (defaults to 50). |
+| *boolean* | showDropDownButton | States if a opening/closing button should be used for showing the drop-down menu (defaults to true). |
 <br/>
 
 
