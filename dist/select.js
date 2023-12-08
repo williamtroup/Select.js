@@ -177,13 +177,14 @@
     _parameter_Window.addEventListener("click", hideMenu);
   }
   function showDropDownMenu(e, control, dropDown, element, bindingOptions) {
-    cancelBubble(e);
-    if (dropDown !== null && dropDown.style.display !== "block") {
-      dropDown.style.display = "block";
-      renderDropDownItems(control, dropDown, element, bindingOptions);
-    } else {
-      hideDropDownMenu(dropDown);
-    }
+    setTimeout(function() {
+      if (dropDown !== null && dropDown.style.display !== "block") {
+        dropDown.style.display = "block";
+        renderDropDownItems(control, dropDown, element, bindingOptions);
+      } else {
+        hideDropDownMenu(dropDown);
+      }
+    }, 50);
   }
   function hideDropDownMenu(dropDown) {
     if (dropDown !== null && dropDown.style.display !== "none") {
