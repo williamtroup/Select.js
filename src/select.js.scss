@@ -49,7 +49,7 @@ div.select-js {
     div.control {
         background-color: var(--container-background-color);
         border-radius: var(--border-radius);
-        padding: 15px;
+        padding: 10px;
         overflow: hidden;
         border: var(--border-size) solid var(--container-border-color);
     }
@@ -84,6 +84,45 @@ div.select-js {
         div.selected {
             color: gray;
             font-style: italic;
+        }
+    }
+}
+
+
+/*
+    -------------------------------------------------------------------------
+    Select.js - Selected Items
+    -------------------------------------------------------------------------
+*/
+
+div.select-js {
+    div.control {
+        div.selected-item {
+            padding: 10px;
+            background-color: var(--color-gray);
+            border-radius: var(--border-radius);
+            display: inline-block;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            span.text {
+                color: var(--color-black);
+            }
+
+            div.remove {
+                margin-left: 10px;
+                display: inline-block;
+                font-weight: bold;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.7;
+                    transition: var( --transition );
+                }
+            }
         }
     }
 }

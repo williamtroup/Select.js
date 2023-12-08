@@ -74,7 +74,8 @@
                     var container = renderContainer( element );
                         controlElements = renderControl( container );
 
-                    renderDropDownItems( controlElements[ 1 ], element );
+                    renderDropDownItems( controlElements[ 0 ], controlElements[ 1 ], element );
+                    renderSelectedItems( controlElements[ 0 ], element.options );
 
                 } else {
                     if ( !_configuration.safeMode ) {
@@ -140,7 +141,7 @@
         return [ control, dropDown ];
     }
 
-    function renderDropDownItems( dropDown, element ) {
+    function renderDropDownItems( control, dropDown, element ) {
         var options = element.options,
             optionsLength = options.length;
 
@@ -171,8 +172,34 @@
                 item.className = "item";
             }
 
-            //buildVisibleSelectedDropDownItems();
+            renderSelectedItems( control, options );
         };
+    }
+
+    function renderSelectedItems( control, options ) {
+        var optionsLength = options.length,
+            optionsSelected = false;
+
+        control.innerHTML = _string.empty;
+
+        for ( var optionIndex = 0; optionIndex < optionsLength; optionIndex++ ) {
+            var option = options[ optionIndex ];
+
+            if ( option.selected ) {
+                optionsSelected = true;
+
+                var selectedItem = createElement( "div", "selected-item" );
+                control.appendChild( selectedItem );
+
+                var selectedItemText = createElement( "span", "text" );
+                selectedItemText.innerHTML = option.text;
+                selectedItem.appendChild( selectedItemText );
+
+                var removeButton = createElement( "div", "remove" );
+                removeButton.innerHTML = "X";
+                selectedItem.appendChild( removeButton );
+            }
+        }
     }
 
 
