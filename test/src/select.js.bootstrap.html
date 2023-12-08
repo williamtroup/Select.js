@@ -27,6 +27,10 @@
         </div>
 
         <div class="contents">
+            <h2>Configuration:</h2>
+            <button class="btn btn-primary" onclick="setupConfiguration();">Set Configuration</button>
+            <br />
+
             <h2>Additional Data:</h2>
             <button class="btn btn-primary" onclick="console.log( $select.getVersion() );">Get Version</button>
         </div>
@@ -37,6 +41,12 @@
         document.getElementById( "header" ).innerText += " - v" + $select.getVersion();
 
         populateSelect();
+
+        function setupConfiguration() {
+            $select.setConfiguration( {
+                safeMode: false
+            } );
+        }
 
         function populateSelect() {
             var select1 = document.getElementById( "selectId1" ),
