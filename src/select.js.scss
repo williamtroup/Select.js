@@ -32,6 +32,9 @@
 
     // Transitions
     --transition: all .3s;
+
+    // Spacing/Sizing
+    --spacing-shadow-size: 4px;
 }
 
 
@@ -45,6 +48,7 @@ div.select-js {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
     margin-bottom: 10px;
+    position: relative;
 
     select {
         display: none !important;
@@ -75,6 +79,12 @@ div.select-js {
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        max-height: 400px;
+        margin-top: 2px;
+        box-shadow: var(--spacing-shadow-size) var(--spacing-shadow-size) var(--spacing-shadow-size) var(--color-gray);
 
         div.item {
             padding: 10px;

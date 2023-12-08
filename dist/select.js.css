@@ -22,6 +22,7 @@
   --border-style-scrollbar: inset 0 0 6px --color-dark-gray;
   --border-size: 0.5px;
   --transition: all .3s;
+  --spacing-shadow-size: 4px;
 }
 
 /*
@@ -33,6 +34,7 @@ div.select-js {
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   margin-bottom: 10px;
+  position: relative;
 }
 div.select-js select {
   display: none !important;
@@ -58,6 +60,12 @@ div.select-js div.drop-down {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  max-height: 400px;
+  margin-top: 2px;
+  box-shadow: var(--spacing-shadow-size) var(--spacing-shadow-size) var(--spacing-shadow-size) var(--color-gray);
 }
 div.select-js div.drop-down div.item {
   padding: 10px;
