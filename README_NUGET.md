@@ -1,8 +1,8 @@
-# Select.js v0.2.0
+# Select.js v0.2.1
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Select.js%2C%20a%20free%20JavaScript%select%builder&url=https://github.com/williamtroup/Select.js&hashtags=javascript,html,select)
-[![npm](https://img.shields.io/badge/npmjs-v0.2.0-blue)](https://www.npmjs.com/package/jselect.js)
-[![nuget](https://img.shields.io/badge/nuget-v0.2.0-purple)](https://www.nuget.org/packages/jSelect.js/)
+[![npm](https://img.shields.io/badge/npmjs-v0.2.1-blue)](https://www.npmjs.com/package/jselect.js)
+[![nuget](https://img.shields.io/badge/nuget-v0.2.1-purple)](https://www.nuget.org/packages/jSelect.js/)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/williamtroup/Select.js/blob/main/LICENSE.txt)
 [![discussions Welcome](https://img.shields.io/badge/discussions-Welcome-red)](https://github.com/williamtroup/Select.js/discussions)
 [![coded by William Troup](https://img.shields.io/badge/coded_by-William_Troup-yellow)](https://github.com/williamtroup)
@@ -13,6 +13,7 @@
 ## What features does Select.js have?
 
 - Zero-dependencies and extremely lightweight!
+- Maintains existing SELECT DOM element for FORM compatibility.
 - Full API available via public functions.
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
 - Full CSS theme support (using :root variables, with a default dark-mode theme).
