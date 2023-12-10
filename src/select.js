@@ -1,7 +1,7 @@
 /**
  * Select.js
  * 
- * package.json
+ * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
  * @file        select.js
  * @version     v0.3.0
