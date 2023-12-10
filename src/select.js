@@ -4,7 +4,7 @@
  * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
  * @file        select.js
- * @version     v0.3.0
+ * @version     v0.2.1
  * @author      Bunoon
  * @license     MIT License
  * @copyright   Bunoon 2023
@@ -566,7 +566,7 @@
      * @returns     {string}                                                The version number.
      */
     this.getVersion = function() {
-        return "0.3.0";
+        return "0.2.1";
     };
 
 
