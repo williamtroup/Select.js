@@ -20,6 +20,7 @@ Select.js
 <h1>What features does Select.js have?</h1>
 
 - Zero-dependencies and extremely lightweight!
+- Maintains existing SELECT DOM element for FORM compatibility.
 - Full API available via public functions.
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
 - Full CSS theme support (using :root variables, with a default dark-mode theme).
