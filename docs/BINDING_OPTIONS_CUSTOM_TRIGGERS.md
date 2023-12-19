@@ -1,4 +1,4 @@
-# Select.js - Binging Options - Custom Triggers:
+# Select.js - Binding Options - Custom Triggers:
 
 Below is a list of all the custom triggers supported in the "data-select-options" binding attribute for DOM elements.
 <br>
