@@ -1,1 +1,1 @@
-nuget pack syntax.js.nuspec
+nuget pack select.js.nuspec

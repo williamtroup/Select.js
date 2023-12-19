@@ -2,6 +2,8 @@
 
 ## Version 0.2.2:
 - Documentation improvements.
+- Fixed the PACK.sh file pointing at the wrong filename.
+- 
 
 <br>
 
