@@ -1,5 +1,11 @@
 # Select.js - Change Log:
 
+## Version 0.2.3:
+-
+
+<br>
+
+
 ## Version 0.2.2:
 - Documentation improvements.
 - Fixed the PACK.sh file pointing at the wrong filename.

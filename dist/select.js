@@ -1,4 +1,4 @@
-/*! Select.js v0.2.2 | (c) Bunoon | MIT License */
+/*! Select.js v0.2.3 | (c) Bunoon | MIT License */
 (function() {
   function render() {
     var tagTypes = _configuration.domElementTypes;
@@ -350,7 +350,7 @@
     return this;
   };
   this.getVersion = function() {
-    return "0.2.2";
+    return "0.2.3";
   };
   (function(documentObject, windowObject) {
     _parameter_Document = documentObject;
