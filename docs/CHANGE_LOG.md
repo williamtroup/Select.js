@@ -1,5 +1,11 @@
 # Select.js - Change Log:
 
+## Version 0.2.2:
+- Documentation improvements.
+
+<br>
+
+
 ## Version 0.2.1:
 - Added PACK.sh and PUBLISH.sh files for quickly packing and publishing the project.
 - Documentation improvements.
