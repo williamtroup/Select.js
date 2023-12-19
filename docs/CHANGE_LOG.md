@@ -1,5 +1,12 @@
 # Select.js - Change Log:
 
+## Version 0.2.3:
+- Fixed mistakes in the Security Policy.
+- Added Code of Conduct and Contributing.
+
+<br>
+
+
 ## Version 0.2.2:
 - Documentation improvements.
 - Fixed the PACK.sh file pointing at the wrong filename.

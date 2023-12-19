@@ -2,7 +2,7 @@
     "name": "jselect.js",
     "title": "Select.js",
     "description": "A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "main": "dist/select.js",
     "author": {
       "name": "Bunoon"
