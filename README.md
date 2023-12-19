@@ -63,7 +63,7 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 ```
 <br>
 
-### 3. Create DOM Container:
+### 3. DOM Element Binding:
 
 ```markdown
 <select multiple="multiple" data-select-options="{ 'render': true }">
