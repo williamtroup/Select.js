@@ -1,5 +1,11 @@
 # Select.js - Change Log:
 
+## Version 0.3.0:
+- 
+
+<br>
+
+
 ## Version 0.2.3:
 - Fixed mistakes in the Security Policy.
 - Added Code of Conduct and Contributing.
