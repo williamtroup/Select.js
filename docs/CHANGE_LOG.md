@@ -5,6 +5,7 @@
 - Added a new binding custom trigger called "onDropDownShow", which states an event that should be triggered when the drop-down menu is shown.
 - Added a new binding custom trigger called "onDropDownHide", which states an event that should be triggered when the drop-down menu is hidden.
 - Added examples to all documentation areas.
+- Added an ":active" CSS state for the drop-down arrow.
 
 <br>
 
