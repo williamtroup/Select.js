@@ -87,7 +87,9 @@
         showDropDownMenu(control, dropDown, element, bindingOptions);
       };
     }
-    return {control:control, dropDown:dropDown, select:element, bindingOptions:bindingOptions, multiSelectEnabled:element.hasAttribute("multiple")};
+    var controlElements = {control:control, dropDown:dropDown, select:element, bindingOptions:bindingOptions, multiSelectEnabled:element.hasAttribute("multiple")};
+    _control_Elements.push(controlElements);
+    return controlElements;
   }
   function renderControlButton(controlElements) {
     if (controlElements.bindingOptions.showDropDownButton) {
@@ -244,6 +246,24 @@
     options.onDropDownHide = getDefaultFunction(options.onDropDownHide, null);
     return options;
   }
+  function buildGlobalDocumentEvents(addEvents) {
+    addEvents = isDefined(addEvents) ? addEvents : true;
+    var documentFunc = addEvents ? _parameter_Document.addEventListener : _parameter_Document.removeEventListener;
+    documentFunc("keydown", onWindowKeyDown);
+  }
+  function onWindowKeyDown(e) {
+    if (e.keyCode === _enum_KeyCodes.escape) {
+      e.preventDefault();
+      hideDropDownMenus();
+    }
+  }
+  function hideDropDownMenus() {
+    var controlElementsLength = _control_Elements.length;
+    var controlElementIndex = 0;
+    for (; controlElementIndex < controlElementsLength; controlElementIndex++) {
+      hideDropDownMenu(_control_Elements[controlElementIndex]);
+    }
+  }
   function isDefined(value) {
     return value !== null && value !== undefined && value !== _string.empty;
   }
@@ -345,8 +365,10 @@
   var _parameter_Document = null;
   var _parameter_Window = null;
   var _configuration = {};
+  var _enum_KeyCodes = {escape:27};
   var _string = {empty:"", space:" "};
   var _elements_Type = {};
+  var _control_Elements = [];
   var _attribute_Name_Options = "data-select-options";
   this.setConfiguration = function(newOptions) {
     _configuration = !isDefinedObject(newOptions) ? {} : newOptions;
@@ -362,6 +384,7 @@
     buildDefaultConfiguration();
     _parameter_Document.addEventListener("DOMContentLoaded", function() {
       render();
+      buildGlobalDocumentEvents();
     });
     if (!isDefined(_parameter_Window.$select)) {
       _parameter_Window.$select = this;

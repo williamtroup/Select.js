@@ -19,6 +19,11 @@
         // Variables: Configuration
         _configuration = {},
 
+        // Variables: Enums
+        _enum_KeyCodes = {
+            escape: 27
+        },
+
         // Variables: Strings
         _string = {
             empty: "",
@@ -27,6 +32,9 @@
 
         // Variables: Elements
         _elements_Type = {},
+
+        // Variables: Control Elements
+        _control_Elements = [],
 
         // Variables: Attribute Names
         _attribute_Name_Options = "data-select-options";
@@ -148,13 +156,17 @@
             };
         }
 
-        return {    
+        var controlElements = {    
             control: control,
             dropDown: dropDown,
             select: element,
             bindingOptions: bindingOptions,
             multiSelectEnabled: element.hasAttribute( "multiple" )
         };
+
+        _control_Elements.push( controlElements );
+
+        return controlElements;
     }
 
     function renderControlButton( controlElements ) {
@@ -365,6 +377,36 @@
         options.onDropDownHide = getDefaultFunction( options.onDropDownHide, null );
 
         return options;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     * Document Events
+     * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     */
+
+    function buildGlobalDocumentEvents( addEvents ) {
+        addEvents = isDefined( addEvents ) ? addEvents : true;
+
+        var documentFunc = addEvents ? _parameter_Document.addEventListener : _parameter_Document.removeEventListener;
+
+        documentFunc( "keydown", onWindowKeyDown );
+    }
+
+    function onWindowKeyDown( e ) {
+        if ( e.keyCode === _enum_KeyCodes.escape ) {
+            e.preventDefault();
+            hideDropDownMenus();
+        }
+    }
+
+    function hideDropDownMenus() {
+        var controlElementsLength = _control_Elements.length;
+
+        for ( var controlElementIndex = 0; controlElementIndex < controlElementsLength; controlElementIndex++ ) {
+            hideDropDownMenu( _control_Elements[ controlElementIndex ] );
+        }
     }
 
 
@@ -589,6 +631,7 @@
 
         _parameter_Document.addEventListener( "DOMContentLoaded", function() {
             render();
+            buildGlobalDocumentEvents();
         } );
 
         if ( !isDefined( _parameter_Window.$select ) ) {

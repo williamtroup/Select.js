@@ -1,10 +1,19 @@
 # Select.js - Change Log:
 
 ## Version 0.3.0:
-- Reorganized the documentation for the project.
+
+#### **Binding Options - Custom Triggers:**
 - Added a new binding custom trigger called "onDropDownShow", which states an event that should be triggered when the drop-down menu is shown.
 - Added a new binding custom trigger called "onDropDownHide", which states an event that should be triggered when the drop-down menu is hidden.
+
+#### **General Improvements:**
+- Pressing escape in the document will close all opened drop-down menus.
+
+#### **Documentation:**
 - Added examples to all documentation areas.
+- Reorganized the documentation for the project.
+
+#### **CSS:**
 - Added an ":active" CSS state for the drop-down arrow.
 
 <br>
