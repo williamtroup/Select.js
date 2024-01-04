@@ -195,6 +195,7 @@
         controlElements.dropDown.style.display = "block";
         renderDropDownItems(controlElements);
         renderSelectedItems(controlElements, false);
+        fireCustomTrigger(controlElements.bindingOptions.onDropDownShow);
       }, controlElements.bindingOptions.dropDownShowDelay);
     } else {
       hideDropDownMenu(controlElements);
@@ -204,6 +205,7 @@
     if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none") {
       controlElements.dropDown.style.display = "none";
       renderSelectedItems(controlElements, false);
+      fireCustomTrigger(controlElements.bindingOptions.onDropDownHide);
     }
   }
   function isDropDownMenuVisible(controlElements) {
@@ -238,6 +240,8 @@
   function buildAttributeOptionCustomTriggers(options) {
     options.onRenderComplete = getDefaultFunction(options.onRenderComplete, null);
     options.onSelectedItemsChanged = getDefaultFunction(options.onSelectedItemsChanged, null);
+    options.onDropDownShow = getDefaultFunction(options.onDropDownShow, null);
+    options.onDropDownHide = getDefaultFunction(options.onDropDownHide, null);
     return options;
   }
   function isDefined(value) {

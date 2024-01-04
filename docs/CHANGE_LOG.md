@@ -2,6 +2,9 @@
 
 ## Version 0.3.0:
 - Reorganized the documentation for the project.
+- Added a new binding custom trigger called "onDropDownShow", which states an event that should be triggered when the drop-down menu is shown.
+- Added a new binding custom trigger called "onDropDownHide", which states an event that should be triggered when the drop-down menu is hidden.
+- Added examples to all documentation areas.
 
 <br>
 

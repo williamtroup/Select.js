@@ -295,6 +295,8 @@
                 renderDropDownItems( controlElements );
                 renderSelectedItems( controlElements, false );
 
+                fireCustomTrigger( controlElements.bindingOptions.onDropDownShow );
+
             }, controlElements.bindingOptions.dropDownShowDelay );
 
         } else {
@@ -307,6 +309,7 @@
             controlElements.dropDown.style.display = "none";
 
             renderSelectedItems( controlElements, false );
+            fireCustomTrigger( controlElements.bindingOptions.onDropDownHide );
         }
     }
 
@@ -358,6 +361,8 @@
     function buildAttributeOptionCustomTriggers( options ) {
         options.onRenderComplete = getDefaultFunction( options.onRenderComplete, null );
         options.onSelectedItemsChanged = getDefaultFunction( options.onSelectedItemsChanged, null );
+        options.onDropDownShow = getDefaultFunction( options.onDropDownShow, null );
+        options.onDropDownHide = getDefaultFunction( options.onDropDownHide, null );
 
         return options;
     }
