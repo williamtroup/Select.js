@@ -1,7 +1,7 @@
 # Select.js - Change Log:
 
 ## Version 0.3.0:
-- 
+- Reorganized the documentation for the project.
 
 <br>
 

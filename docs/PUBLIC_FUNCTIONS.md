@@ -10,7 +10,7 @@ Below is a list of all the public functions that can be called from the Select.j
 ### **setConfiguration( *newOptions* )**:
 Sets the specific configuration options that should be used.
 <br>
-***Parameter: newOptions***: '*Options*' - All the configuration options that should be set (refer to ["Configuration Options"](CONFIGURATION_OPTIONS.md) documentation for properties).
+***Parameter: newOptions***: '*Options*' - All the configuration options that should be set (refer to ["Configuration Options"](configuration/OPTIONS.md) documentation for properties).
 <br>
 ***Returns***: '*Object*' - The Select.js class instance.
 

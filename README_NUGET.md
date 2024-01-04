@@ -65,9 +65,9 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 </select>
 ```
 
-To see a list of all the available binding options you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/BINDING_OPTIONS.md).
+To see a list of all the available binding options you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/binding/OPTIONS.md).
 
-To see a list of all the available custom triggers you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/BINDING_OPTIONS_CUSTOM_TRIGGERS.md).
+To see a list of all the available custom triggers you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/binding/CUSTOM_TRIGGERS.md).
 
 
 ### 4. Finishing Up:
@@ -97,4 +97,4 @@ Configuration options allow you to customize how Select.js will function.  You c
 </script>
 ```
 
-To see a list of all the available configuration options you can use, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/CONFIGURATION_OPTIONS.md).
+To see a list of all the available configuration options you can use, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/configuration/OPTIONS.md).
