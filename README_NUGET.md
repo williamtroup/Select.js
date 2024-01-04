@@ -1,8 +1,8 @@
-# Select.js v0.2.3
+# Select.js v0.3.0
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Select.js%2C%20a%20free%20JavaScript%select%builder&url=https://github.com/williamtroup/Select.js&hashtags=javascript,html,select)
-[![npm](https://img.shields.io/badge/npmjs-v0.2.3-blue)](https://www.npmjs.com/package/jselect.js)
-[![nuget](https://img.shields.io/badge/nuget-v0.2.3-purple)](https://www.nuget.org/packages/jSelect.js/)
+[![npm](https://img.shields.io/badge/npmjs-v0.3.0-blue)](https://www.npmjs.com/package/jselect.js)
+[![nuget](https://img.shields.io/badge/nuget-v0.3.0-purple)](https://www.nuget.org/packages/jSelect.js/)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/williamtroup/Select.js/blob/main/LICENSE.txt)
 [![discussions Welcome](https://img.shields.io/badge/discussions-Welcome-red)](https://github.com/williamtroup/Select.js/discussions)
 [![coded by William Troup](https://img.shields.io/badge/coded_by-William_Troup-yellow)](https://github.com/williamtroup)
@@ -18,6 +18,7 @@
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
 - Full CSS theme support (using :root variables, with a default dark-mode theme).
 - Custom triggers for actions (when elements are rendered, selection is changed, etc).
+- Shortcut keys (click [here](https://github.com/williamtroup/docs/SHORTCUT_KEYS.md) to see the full list).
 
 
 ## What browsers are supported?
@@ -65,9 +66,9 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 </select>
 ```
 
-To see a list of all the available binding options you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/BINDING_OPTIONS.md).
+To see a list of all the available binding options you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/binding/OPTIONS.md).
 
-To see a list of all the available custom triggers you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/BINDING_OPTIONS_CUSTOM_TRIGGERS.md).
+To see a list of all the available custom triggers you can use for "data-select-options", click [here](https://github.com/williamtroup/Select.js/blob/main/docs/binding/CUSTOM_TRIGGERS.md).
 
 
 ### 4. Finishing Up:
@@ -97,4 +98,4 @@ Configuration options allow you to customize how Select.js will function.  You c
 </script>
 ```
 
-To see a list of all the available configuration options you can use, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/CONFIGURATION_OPTIONS.md).
+To see a list of all the available configuration options you can use, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/configuration/OPTIONS.md).

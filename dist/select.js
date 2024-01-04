@@ -1,4 +1,4 @@
-/*! Select.js v0.2.3 | (c) Bunoon | MIT License */
+/*! Select.js v0.3.0 | (c) Bunoon | MIT License */
 (function() {
   function render() {
     var tagTypes = _configuration.domElementTypes;
@@ -87,7 +87,9 @@
         showDropDownMenu(control, dropDown, element, bindingOptions);
       };
     }
-    return {control:control, dropDown:dropDown, select:element, bindingOptions:bindingOptions, multiSelectEnabled:element.hasAttribute("multiple")};
+    var controlElements = {control:control, dropDown:dropDown, select:element, bindingOptions:bindingOptions, multiSelectEnabled:element.hasAttribute("multiple")};
+    _control_Elements.push(controlElements);
+    return controlElements;
   }
   function renderControlButton(controlElements) {
     if (controlElements.bindingOptions.showDropDownButton) {
@@ -195,6 +197,7 @@
         controlElements.dropDown.style.display = "block";
         renderDropDownItems(controlElements);
         renderSelectedItems(controlElements, false);
+        fireCustomTrigger(controlElements.bindingOptions.onDropDownShow);
       }, controlElements.bindingOptions.dropDownShowDelay);
     } else {
       hideDropDownMenu(controlElements);
@@ -204,6 +207,7 @@
     if (controlElements.dropDown !== null && controlElements.dropDown.style.display !== "none") {
       controlElements.dropDown.style.display = "none";
       renderSelectedItems(controlElements, false);
+      fireCustomTrigger(controlElements.bindingOptions.onDropDownHide);
     }
   }
   function isDropDownMenuVisible(controlElements) {
@@ -238,7 +242,27 @@
   function buildAttributeOptionCustomTriggers(options) {
     options.onRenderComplete = getDefaultFunction(options.onRenderComplete, null);
     options.onSelectedItemsChanged = getDefaultFunction(options.onSelectedItemsChanged, null);
+    options.onDropDownShow = getDefaultFunction(options.onDropDownShow, null);
+    options.onDropDownHide = getDefaultFunction(options.onDropDownHide, null);
     return options;
+  }
+  function buildGlobalDocumentEvents(addEvents) {
+    addEvents = isDefined(addEvents) ? addEvents : true;
+    var documentFunc = addEvents ? _parameter_Document.addEventListener : _parameter_Document.removeEventListener;
+    documentFunc("keydown", onWindowKeyDown);
+  }
+  function onWindowKeyDown(e) {
+    if (e.keyCode === _enum_KeyCodes.escape) {
+      e.preventDefault();
+      hideDropDownMenus();
+    }
+  }
+  function hideDropDownMenus() {
+    var controlElementsLength = _control_Elements.length;
+    var controlElementIndex = 0;
+    for (; controlElementIndex < controlElementsLength; controlElementIndex++) {
+      hideDropDownMenu(_control_Elements[controlElementIndex]);
+    }
   }
   function isDefined(value) {
     return value !== null && value !== undefined && value !== _string.empty;
@@ -341,8 +365,10 @@
   var _parameter_Document = null;
   var _parameter_Window = null;
   var _configuration = {};
+  var _enum_KeyCodes = {escape:27};
   var _string = {empty:"", space:" "};
   var _elements_Type = {};
+  var _control_Elements = [];
   var _attribute_Name_Options = "data-select-options";
   this.setConfiguration = function(newOptions) {
     _configuration = !isDefinedObject(newOptions) ? {} : newOptions;
@@ -350,7 +376,7 @@
     return this;
   };
   this.getVersion = function() {
-    return "0.2.3";
+    return "0.3.0";
   };
   (function(documentObject, windowObject) {
     _parameter_Document = documentObject;
@@ -358,6 +384,7 @@
     buildDefaultConfiguration();
     _parameter_Document.addEventListener("DOMContentLoaded", function() {
       render();
+      buildGlobalDocumentEvents();
     });
     if (!isDefined(_parameter_Window.$select)) {
       _parameter_Window.$select = this;
