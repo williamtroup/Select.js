@@ -6,7 +6,7 @@
         <title>Select.js</title>
         <description>A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!</description>
         <authors>William Troup</authors>
-        <projectUrl>https://github.com/williamtroup/Select.js</projectUrl>
+        <projectUrl>https://www.william-troup.com/select-js/</projectUrl>
         <repository type="git" url="https://github.com/williamtroup/Select.js" branch="main" />
         <readme>README_NUGET.md</readme>
         <license type="expression">MIT</license>
