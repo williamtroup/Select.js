@@ -358,7 +358,8 @@
     }
     return {parsed:parsed, result:result};
   }
-  function buildDefaultConfiguration() {
+  function buildDefaultConfiguration(newConfiguration) {
+    _configuration = !isDefinedObject(newConfiguration) ? {} : newConfiguration;
     _configuration.safeMode = getDefaultBoolean(_configuration.safeMode, true);
     _configuration.domElementTypes = getDefaultStringOrArray(_configuration.domElementTypes, ["select"]);
   }
@@ -371,9 +372,18 @@
   var _elements_Type = {};
   var _control_Elements = [];
   var _attribute_Name_Options = "data-select-options";
-  this.setConfiguration = function(newOptions) {
-    _configuration = !isDefinedObject(newOptions) ? {} : newOptions;
-    buildDefaultConfiguration();
+  this.setConfiguration = function(newConfiguration) {
+    var configurationHasChanged = false;
+    var propertyName;
+    for (propertyName in newConfiguration) {
+      if (newConfiguration.hasOwnProperty(propertyName) && _configuration.hasOwnProperty(propertyName) && _configuration[propertyName] !== newConfiguration[propertyName]) {
+        _configuration[propertyName] = newConfiguration[propertyName];
+        configurationHasChanged = true;
+      }
+    }
+    if (configurationHasChanged) {
+      buildDefaultConfiguration(_configuration);
+    }
     return this;
   };
   this.getVersion = function() {

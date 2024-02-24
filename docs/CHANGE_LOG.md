@@ -17,6 +17,7 @@
 - Fixed the "box-sizing" rules not being applied to the main container (causing width issues in mobile mode).
 - Fixed text-selections not being disabled for some areas.
 - Fixed the "select.js.nuspec" file including the ".github" folder when NuGet PACK is called.
+- Fixed a fault that caused all pre-configured settings to be wiped out when calling "setConfiguration()".
 
 <br>
 
