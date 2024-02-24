@@ -8,6 +8,7 @@
 
 #### **CSS:**
 - Added a new ":root" variable called "--select-js-default-font".
+- All hover transition effects now work for hovering, and not hovering, which results in a smoother display.
 
 #### **Documentation:**
 - Added install instructions into the main README files.

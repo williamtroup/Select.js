@@ -99,6 +99,7 @@ div.select-js {
         div.item {
             padding: var(--select-js-spacing);
             border-bottom: var(--select-js-border-size) var(--select-js-color-black) dotted;
+            transition: var( --select-js-transition );
 
             &:last-child {
                 border-bottom: none;
@@ -107,7 +108,6 @@ div.select-js {
             &:hover {
                 cursor: pointer;
                 background-color: var(--select-js-color-light-gray);
-                transition: var( --select-js-transition );
             }
         }
         
@@ -138,17 +138,16 @@ div.select-js {
             right: 14px;
             top: 14px;
             transform: rotate(45deg);
+            transition: var(--select-js-transition);
 
             &:hover {
                 cursor: pointer;
                 opacity: 0.7;
-                transition: var(--select-js-transition);
             }
 
             &:active {
                 cursor: pointer;
                 opacity: 0.5;
-                transition: var(--select-js-transition);
             }
         }
 
@@ -177,11 +176,11 @@ div.select-js {
                 margin-left: var(--select-js-spacing);
                 display: inline-block;
                 font-weight: bold;
+                transition: var(--select-js-transition);
 
                 &:hover {
                     cursor: pointer;
                     opacity: 0.7;
-                    transition: var(--select-js-transition);
                 }
             }
         }
