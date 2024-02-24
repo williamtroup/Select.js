@@ -4,6 +4,7 @@
 
 #### **General Improvements:**
 - Added JSON injection directly into the main instance.
+- Improved keywords in the package files.
 
 #### **CSS:**
 - Added a new ":root" variable called "--select-js-default-font".

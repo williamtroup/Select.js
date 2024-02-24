@@ -19,7 +19,11 @@
       "drop-down",
       "html5",
       "multi-select",
-      "Select.js"
+      "Select.js",
+      "multiple",
+      "tag",
+      "selector",
+      "list"
     ],
     "bugs": {
       "url": "https://github.com/williamtroup/Select.js/issues"
