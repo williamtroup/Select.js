@@ -9,6 +9,7 @@
 - Added a new ":root" variable called "--select-js-default-font".
 
 #### **Documentation:**
+- Added install instructions into the main README files.
 - Documentation layout improvements.
 
 #### **Fixes:**

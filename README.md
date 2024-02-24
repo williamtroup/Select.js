@@ -17,6 +17,7 @@ Select.js
 <br>
 <br>
 
+
 <h1>What features does Select.js have?</h1>
 
 - Zero-dependencies and extremely lightweight!
@@ -29,11 +30,13 @@ Select.js
 <br />
 <br />
 
+
 <h1>What browsers are supported?</h1>
 
 All modern browsers (such as Google Chrome, FireFox, and Opera) are fully supported.
 <br>
 <br>
+
 
 <h1>What are the most recent changes?</h1>
 
@@ -41,11 +44,24 @@ To see a list of all the most recent changes, click [here](docs/CHANGE_LOG.md).
 <br>
 <br>
 
+
+<h1>How do I install Select.js?</h1>
+
+You can install the library with npm into your local modules directory using the following command:
+
+```markdown
+npm install jselect.js
+```
+<br>
+<br>
+
+
 <h1>How do I get started?</h1>
 
 To get started using Select.js, do the following steps:
 <br>
 <br>
+
 
 ### 1. Prerequisites:
 
@@ -56,6 +72,7 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 ```
 <br>
 
+
 ### 2. Include Files:
 
 ```markdown
@@ -63,6 +80,7 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 <script src="dist/select.js"></script>
 ```
 <br>
+
 
 ### 3. DOM Element Binding:
 
@@ -86,6 +104,7 @@ To see a list of all the available custom triggers you can use for "data-select-
 
 <br>
 
+
 ### 4. Finishing Up:
 
 That's it! Nice and simple. Please refer to the code if you need more help (fully documented).
@@ -97,6 +116,7 @@ That's it! Nice and simple. Please refer to the code if you need more help (full
 To customize, and get more out of Select.js, please read through the following documentation.
 <br>
 <br>
+
 
 ### 1. Public Functions:
 

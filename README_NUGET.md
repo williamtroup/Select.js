@@ -31,6 +31,15 @@ All modern browsers (such as Google Chrome, FireFox, and Opera) are fully suppor
 To see a list of all the most recent changes, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/CHANGE_LOG.md).
 
 
+## How do I install Select.js?
+
+You can install the library with npm into your local modules directory using the following command:
+
+```markdown
+npm install jselect.js
+```
+
+
 ## How do I get started?
 
 To get started using Select.js, do the following steps:
