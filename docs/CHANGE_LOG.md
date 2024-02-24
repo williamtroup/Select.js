@@ -1,5 +1,29 @@
 # Select.js - Change Log:
 
+## Version 0.5.0:
+
+#### **General Improvements:**
+- Added JSON injection directly into the main instance.
+- Improved keywords in the package files.
+
+#### **CSS:**
+- Added a new ":root" variable called "--select-js-default-font".
+- All hover transition effects now work for hovering, and not hovering, which results in a smoother display.
+
+#### **Documentation:**
+- Added install instructions into the main README files.
+- Added documentation that states how issues and new feature requests should be raised.
+- Documentation layout improvements.
+
+#### **Fixes:**
+- Fixed the "box-sizing" rules not being applied to the main container (causing width issues in mobile mode).
+- Fixed text-selections not being disabled for some areas.
+- Fixed the "select.js.nuspec" file including the ".github" folder when NuGet PACK is called.
+- Fixed a fault that caused all pre-configured settings to be wiped out when calling "setConfiguration()".
+
+<br>
+
+
 ## Version 0.4.0:
 - BREAKING: All ":root" variables now start with "--select-js-", which will prevent collisions with other libraries.
 - Updated project homepage URL.

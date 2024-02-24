@@ -4,7 +4,7 @@
  * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
  * @file        select.js
- * @version     v0.4.0
+ * @version     v0.5.0
  * @author      Bunoon
  * @license     MIT License
  * @copyright   Bunoon 2023
@@ -15,6 +15,7 @@
     var // Variables: Constructor Parameters
         _parameter_Document = null,
         _parameter_Window = null,
+        _parameter_JSON = null,
 
         // Variables: Configuration
         _configuration = {},
@@ -537,7 +538,7 @@
 
         try {
             if ( isDefinedString( objectString ) ) {
-                result = JSON.parse( objectString );
+                result = _parameter_JSON.parse( objectString );
             }
 
         } catch ( e1 ) {
@@ -583,15 +584,25 @@
      * 
      * @returns     {Object}                                                The Select.js class instance.
      */
-    this.setConfiguration = function( newOptions ) {
-        _configuration = !isDefinedObject( newOptions ) ? {} : newOptions;
+    this.setConfiguration = function( newConfiguration ) {
+        var configurationHasChanged = false;
         
-        buildDefaultConfiguration();
+        for ( var propertyName in newConfiguration ) {
+            if ( newConfiguration.hasOwnProperty( propertyName ) && _configuration.hasOwnProperty( propertyName ) && _configuration[ propertyName ] !== newConfiguration[ propertyName ] ) {
+                _configuration[ propertyName ] = newConfiguration[ propertyName ];
+                configurationHasChanged = true;
+            }
+        }
+
+        if ( configurationHasChanged ) {
+            buildDefaultConfiguration( _configuration );
+        }
 
         return this;
     };
 
-    function buildDefaultConfiguration() {
+    function buildDefaultConfiguration( newConfiguration ) {
+        _configuration = !isDefinedObject( newConfiguration ) ? {} : newConfiguration;
         _configuration.safeMode = getDefaultBoolean( _configuration.safeMode, true );
         _configuration.domElementTypes = getDefaultStringOrArray( _configuration.domElementTypes, [ "select" ] );
     }
@@ -613,7 +624,7 @@
      * @returns     {string}                                                The version number.
      */
     this.getVersion = function() {
-        return "0.4.0";
+        return "0.5.0";
     };
 
 
@@ -623,9 +634,10 @@
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
 
-    ( function ( documentObject, windowObject ) {
+    ( function ( documentObject, windowObject, jsonObject ) {
         _parameter_Document = documentObject;
         _parameter_Window = windowObject;
+        _parameter_JSON = jsonObject;
 
         buildDefaultConfiguration();
 
@@ -638,5 +650,5 @@
             _parameter_Window.$select = this;
         }
 
-    } ) ( document, window );
+    } ) ( document, window, JSON );
 } )();

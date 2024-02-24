@@ -1,8 +1,8 @@
-# Select.js v0.4.0
+# Select.js v0.5.0
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Select.js%2C%20a%20free%20JavaScript%select%builder&url=https://github.com/williamtroup/Select.js&hashtags=javascript,html,select)
-[![npm](https://img.shields.io/badge/npmjs-v0.4.0-blue)](https://www.npmjs.com/package/jselect.js)
-[![nuget](https://img.shields.io/badge/nuget-v0.4.0-purple)](https://www.nuget.org/packages/jSelect.js/)
+[![npm](https://img.shields.io/badge/npmjs-v0.5.0-blue)](https://www.npmjs.com/package/jselect.js)
+[![nuget](https://img.shields.io/badge/nuget-v0.5.0-purple)](https://www.nuget.org/packages/jSelect.js/)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/williamtroup/Select.js/blob/main/LICENSE.txt)
 [![discussions Welcome](https://img.shields.io/badge/discussions-Welcome-red)](https://github.com/williamtroup/Select.js/discussions)
 [![coded by William Troup](https://img.shields.io/badge/coded_by-William_Troup-yellow)](https://github.com/williamtroup)
@@ -29,6 +29,15 @@ All modern browsers (such as Google Chrome, FireFox, and Opera) are fully suppor
 ## What are the most recent changes?
 
 To see a list of all the most recent changes, click [here](https://github.com/williamtroup/Select.js/blob/main/docs/CHANGE_LOG.md).
+
+
+## How do I install Select.js?
+
+You can install the library with npm into your local modules directory using the following command:
+
+```markdown
+npm install jselect.js
+```
 
 
 ## How do I get started?

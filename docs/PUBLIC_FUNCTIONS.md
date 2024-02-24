@@ -1,4 +1,4 @@
-# Select.js - Functions:
+# Select.js - Public Functions:
 
 Below is a list of all the public functions that can be called from the Select.js instance.
 <br>

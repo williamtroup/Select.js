@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>jSelect.js</id>
-        <version>0.4.0</version>
+        <version>0.5.0</version>
         <title>Select.js</title>
         <description>A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!</description>
         <authors>William Troup</authors>
@@ -10,11 +10,11 @@
         <repository type="git" url="https://github.com/williamtroup/Select.js" branch="main" />
         <readme>README_NUGET.md</readme>
         <license type="expression">MIT</license>
-        <tags>javascript css html5 Select.js select drop-down multi-select</tags>
+        <tags>javascript css html5 Select.js select drop-down multi-select multiple list tag selector</tags>
         <icon>docs\images\icon.png</icon>
         <copyright>William Troup</copyright>
     </metadata>
     <files>
-        <file src="**" target="/" exclude=".git\**;.vscode\**" />
+        <file src="**" target="/" exclude=".git\**;.github\**;.vscode\**" />
     </files>
 </package>

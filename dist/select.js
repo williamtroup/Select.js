@@ -1,4 +1,4 @@
-/*! Select.js v0.4.0 | (c) Bunoon | MIT License */
+/*! Select.js v0.5.0 | (c) Bunoon | MIT License */
 (function() {
   function render() {
     var tagTypes = _configuration.domElementTypes;
@@ -340,7 +340,7 @@
     var result = null;
     try {
       if (isDefinedString(objectString)) {
-        result = JSON.parse(objectString);
+        result = _parameter_JSON.parse(objectString);
       }
     } catch (e1) {
       try {
@@ -358,29 +358,41 @@
     }
     return {parsed:parsed, result:result};
   }
-  function buildDefaultConfiguration() {
+  function buildDefaultConfiguration(newConfiguration) {
+    _configuration = !isDefinedObject(newConfiguration) ? {} : newConfiguration;
     _configuration.safeMode = getDefaultBoolean(_configuration.safeMode, true);
     _configuration.domElementTypes = getDefaultStringOrArray(_configuration.domElementTypes, ["select"]);
   }
   var _parameter_Document = null;
   var _parameter_Window = null;
+  var _parameter_JSON = null;
   var _configuration = {};
   var _enum_KeyCodes = {escape:27};
   var _string = {empty:"", space:" "};
   var _elements_Type = {};
   var _control_Elements = [];
   var _attribute_Name_Options = "data-select-options";
-  this.setConfiguration = function(newOptions) {
-    _configuration = !isDefinedObject(newOptions) ? {} : newOptions;
-    buildDefaultConfiguration();
+  this.setConfiguration = function(newConfiguration) {
+    var configurationHasChanged = false;
+    var propertyName;
+    for (propertyName in newConfiguration) {
+      if (newConfiguration.hasOwnProperty(propertyName) && _configuration.hasOwnProperty(propertyName) && _configuration[propertyName] !== newConfiguration[propertyName]) {
+        _configuration[propertyName] = newConfiguration[propertyName];
+        configurationHasChanged = true;
+      }
+    }
+    if (configurationHasChanged) {
+      buildDefaultConfiguration(_configuration);
+    }
     return this;
   };
   this.getVersion = function() {
-    return "0.4.0";
+    return "0.5.0";
   };
-  (function(documentObject, windowObject) {
+  (function(documentObject, windowObject, jsonObject) {
     _parameter_Document = documentObject;
     _parameter_Window = windowObject;
+    _parameter_JSON = jsonObject;
     buildDefaultConfiguration();
     _parameter_Document.addEventListener("DOMContentLoaded", function() {
       render();
@@ -389,5 +401,5 @@
     if (!isDefined(_parameter_Window.$select)) {
       _parameter_Window.$select = this;
     }
-  })(document, window);
+  })(document, window, JSON);
 })();

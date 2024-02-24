@@ -1,18 +1,17 @@
 /*
- * Select.js Library v0.4.0
+ * Select.js Library v0.5.0
  *
  * Copyright 2023 Bunoon
  * Released under the MIT License
  */
 
 
-/*
-    -------------------------------------------------------------------------
-    Select.js - Variables
-    -------------------------------------------------------------------------
-*/
+@import "foundation/styles";
 
 :root {
+    // Fonts
+    --select-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
     // Colors
     --select-js-color-black: #3b3a3a;
     --select-js-color-white: #F5F5F5;
@@ -46,19 +45,19 @@
 */
 
 div.select-js {
-    font-family: 'Montserrat', sans-serif;
+    @include no-selection-allowed;
+    @include box-sizing;
+    font-family: var(--select-js-default-font);
     font-size: 0.8rem;
     margin-bottom: var(--select-js-spacing);
     position: relative;
 
     * {
-        box-sizing: content-box;
-        line-height: normal;
+        @include box-sizing;
 
         &::before,
         &::after {
-            box-sizing: content-box;
-            line-height: normal;
+            @include box-sizing;
         }
     }
 
@@ -88,9 +87,6 @@ div.select-js {
         background-color: var(--select-js-container-background-color-drop-down);
         border: var(--select-js-border-size) solid var(--select-js-container-border-color-drop-down);
         border-radius: var(--select-js-border-radius);
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
         position: absolute;
         width: 100%;
         z-index: 10;
@@ -103,6 +99,7 @@ div.select-js {
         div.item {
             padding: var(--select-js-spacing);
             border-bottom: var(--select-js-border-size) var(--select-js-color-black) dotted;
+            transition: var( --select-js-transition );
 
             &:last-child {
                 border-bottom: none;
@@ -111,7 +108,6 @@ div.select-js {
             &:hover {
                 cursor: pointer;
                 background-color: var(--select-js-color-light-gray);
-                transition: var( --select-js-transition );
             }
         }
         
@@ -131,31 +127,27 @@ div.select-js {
 
 div.select-js {
     div.control {
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
         position: relative;
 
         div.button {
             position: absolute;
             border-right: 5px solid var(--select-js-color-black);
             border-bottom: 5px solid var(--select-js-color-black);
-            height: 8px;
-            width: 8px;
+            height: 14px;
+            width: 14px;
             right: 14px;
             top: 14px;
             transform: rotate(45deg);
+            transition: var(--select-js-transition);
 
             &:hover {
                 cursor: pointer;
                 opacity: 0.7;
-                transition: var(--select-js-transition);
             }
 
             &:active {
                 cursor: pointer;
                 opacity: 0.5;
-                transition: var(--select-js-transition);
             }
         }
 
@@ -184,11 +176,11 @@ div.select-js {
                 margin-left: var(--select-js-spacing);
                 display: inline-block;
                 font-weight: bold;
+                transition: var(--select-js-transition);
 
                 &:hover {
                     cursor: pointer;
                     opacity: 0.7;
-                    transition: var(--select-js-transition);
                 }
             }
         }
