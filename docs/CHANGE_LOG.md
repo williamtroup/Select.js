@@ -10,6 +10,7 @@
 
 #### **Documentation:**
 - Added install instructions into the main README files.
+- Added documentation that states how issues and new feature requests should be raised.
 - Documentation layout improvements.
 
 #### **Fixes:**
