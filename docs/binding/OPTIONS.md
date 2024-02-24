@@ -1,21 +1,22 @@
 # Select.js - Binding Options:
 
 Below are all the JSON properties that can be passed in the "data-select-options" binding attribute for a DOM element.
+<br>
+<br>
 
 
 ### Standard Options:
-<br/>
 
 | Type: | Name: | Description: |
 | --- | --- | --- |
 | *boolean* | render | States if the element should be rendered (defaults to true). |
 | *number* | dropDownShowDelay | States the milliseconds that it should wait before showing the drop-down menu (defaults to 50). |
 | *boolean* | showDropDownButton | States if a opening/closing button should be used for showing the drop-down menu (defaults to true). |
+
 <br/>
 
 
 ### Translatable String Options:
-<br/>
 
 | Type: | Name: | Description: |
 | --- | --- | --- |

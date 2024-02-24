@@ -1,5 +1,13 @@
 # Select.js - Change Log:
 
+## Version 0.5.0:
+
+#### **Documentation:**
+- Documentation layout improvements.
+
+<br>
+
+
 ## Version 0.4.0:
 - BREAKING: All ":root" variables now start with "--select-js-", which will prevent collisions with other libraries.
 - Updated project homepage URL.
