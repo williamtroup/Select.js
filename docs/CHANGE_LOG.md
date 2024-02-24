@@ -11,6 +11,9 @@
 #### **Documentation:**
 - Documentation layout improvements.
 
+#### **Fixes:**
+- Fixed the "select.js.nuspec" file including the ".github" folder when NuGet PACK is called.
+
 <br>
 
 
