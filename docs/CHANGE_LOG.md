@@ -14,6 +14,8 @@
 - Documentation layout improvements.
 
 #### **Fixes:**
+- Fixed the "box-sizing" rules not being applied to the main container (causing width issues in mobile mode).
+- Fixed text-selections not being disabled for some areas.
 - Fixed the "select.js.nuspec" file including the ".github" folder when NuGet PACK is called.
 
 <br>

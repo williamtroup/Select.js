@@ -4,11 +4,6 @@
  * Copyright 2023 Bunoon
  * Released under the MIT License
  */
-/*
-    -------------------------------------------------------------------------
-    Select.js - Variables
-    -------------------------------------------------------------------------
-*/
 :root {
   --select-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --select-js-color-black: #3b3a3a;
@@ -33,17 +28,25 @@
     -------------------------------------------------------------------------
 */
 div.select-js {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+  box-sizing: border-box;
+  line-height: normal;
   font-family: var(--select-js-default-font);
   font-size: 0.8rem;
   margin-bottom: var(--select-js-spacing);
   position: relative;
 }
 div.select-js * {
-  box-sizing: content-box;
+  box-sizing: border-box;
   line-height: normal;
 }
 div.select-js *::before, div.select-js *::after {
-  box-sizing: content-box;
+  box-sizing: border-box;
   line-height: normal;
 }
 div.select-js select {
@@ -67,9 +70,6 @@ div.select-js div.drop-down {
   background-color: var(--select-js-container-background-color-drop-down);
   border: var(--select-js-border-size) solid var(--select-js-container-border-color-drop-down);
   border-radius: var(--select-js-border-radius);
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   position: absolute;
   width: 100%;
   z-index: 10;
@@ -102,17 +102,14 @@ div.select-js div.drop-down div.selected {
     -------------------------------------------------------------------------
 */
 div.select-js div.control {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   position: relative;
 }
 div.select-js div.control div.button {
   position: absolute;
   border-right: 5px solid var(--select-js-color-black);
   border-bottom: 5px solid var(--select-js-color-black);
-  height: 8px;
-  width: 8px;
+  height: 14px;
+  width: 14px;
   right: 14px;
   top: 14px;
   transform: rotate(45deg);
