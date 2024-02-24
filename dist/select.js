@@ -340,7 +340,7 @@
     var result = null;
     try {
       if (isDefinedString(objectString)) {
-        result = JSON.parse(objectString);
+        result = _parameter_JSON.parse(objectString);
       }
     } catch (e1) {
       try {
@@ -364,6 +364,7 @@
   }
   var _parameter_Document = null;
   var _parameter_Window = null;
+  var _parameter_JSON = null;
   var _configuration = {};
   var _enum_KeyCodes = {escape:27};
   var _string = {empty:"", space:" "};
@@ -378,9 +379,10 @@
   this.getVersion = function() {
     return "0.5.0";
   };
-  (function(documentObject, windowObject) {
+  (function(documentObject, windowObject, jsonObject) {
     _parameter_Document = documentObject;
     _parameter_Window = windowObject;
+    _parameter_JSON = jsonObject;
     buildDefaultConfiguration();
     _parameter_Document.addEventListener("DOMContentLoaded", function() {
       render();
@@ -389,5 +391,5 @@
     if (!isDefined(_parameter_Window.$select)) {
       _parameter_Window.$select = this;
     }
-  })(document, window);
+  })(document, window, JSON);
 })();

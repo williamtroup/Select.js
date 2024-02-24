@@ -15,6 +15,7 @@
     var // Variables: Constructor Parameters
         _parameter_Document = null,
         _parameter_Window = null,
+        _parameter_JSON = null,
 
         // Variables: Configuration
         _configuration = {},
@@ -537,7 +538,7 @@
 
         try {
             if ( isDefinedString( objectString ) ) {
-                result = JSON.parse( objectString );
+                result = _parameter_JSON.parse( objectString );
             }
 
         } catch ( e1 ) {
@@ -623,9 +624,10 @@
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
 
-    ( function ( documentObject, windowObject ) {
+    ( function ( documentObject, windowObject, jsonObject ) {
         _parameter_Document = documentObject;
         _parameter_Window = windowObject;
+        _parameter_JSON = jsonObject;
 
         buildDefaultConfiguration();
 
@@ -638,5 +640,5 @@
             _parameter_Window.$select = this;
         }
 
-    } ) ( document, window );
+    } ) ( document, window, JSON );
 } )();

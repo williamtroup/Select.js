@@ -2,6 +2,9 @@
 
 ## Version 0.5.0:
 
+#### **General Improvements:**
+- Added JSON injection directly into the main instance.
+
 #### **CSS:**
 - Added a new ":root" variable called "--select-js-default-font".
 
