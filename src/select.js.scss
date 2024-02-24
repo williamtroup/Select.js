@@ -13,6 +13,9 @@
 */
 
 :root {
+    // Fonts
+    --select-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
     // Colors
     --select-js-color-black: #3b3a3a;
     --select-js-color-white: #F5F5F5;
@@ -46,7 +49,7 @@
 */
 
 div.select-js {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--select-js-default-font);
     font-size: 0.8rem;
     margin-bottom: var(--select-js-spacing);
     position: relative;

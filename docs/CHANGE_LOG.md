@@ -2,6 +2,9 @@
 
 ## Version 0.5.0:
 
+#### **CSS:**
+- Added a new ":root" variable called "--select-js-default-font".
+
 #### **Documentation:**
 - Documentation layout improvements.
 
