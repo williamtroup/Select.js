@@ -1,5 +1,3 @@
-"use strict";
-
 var Is;
 
 (e => {
@@ -23,14 +21,14 @@ var Is;
         return t(e) && typeof e === "function";
     }
     e.definedFunction = r;
-    function s(e) {
+    function l(e) {
         return t(e) && typeof e === "number";
     }
-    e.definedNumber = s;
-    function l(e) {
+    e.definedNumber = l;
+    function s(e) {
         return n(e) && e instanceof Array;
     }
-    e.definedArray = l;
+    e.definedArray = s;
 })(Is || (Is = {}));
 
 var Trigger;
@@ -214,14 +212,14 @@ var Config;
         if (Is.defined(t) && t.hasAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME)) {
             const o = t.getAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME);
             if (Is.definedString(o)) {
-                const s = Default2.getObjectFromString(o, e);
-                if (s.parsed && Is.definedObject(s.object)) {
-                    const e = Binding.Options.getForNewInstance(s.object, t);
+                const l = Default2.getObjectFromString(o, e);
+                if (l.parsed && Is.definedObject(l.object)) {
+                    const e = Binding.Options.getForNewInstance(l.object, t);
                     if (e.render) {
                         t.removeAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME);
                         const n = i(t);
                         const o = r(n, t, e);
-                        l(o);
+                        s(o);
                         u(o, false);
                         a(o);
                         Trigger.customEvent(e.onRenderComplete, e._currentView.element);
@@ -258,15 +256,15 @@ var Config;
                 break;
             }
         }
-        const s = DomElement.create("div", "select-js");
+        const l = DomElement.create("div", "select-js");
         if (Is.defined(i)) {
-            t.insertBefore(s, i);
+            t.insertBefore(l, i);
         } else {
-            t.appendChild(s);
+            t.appendChild(l);
         }
         t.removeChild(e);
-        s.appendChild(e);
-        return s;
+        l.appendChild(e);
+        return l;
     }
     function r(e, n, o) {
         const i = DomElement.create("div", "control");
@@ -274,7 +272,7 @@ var Config;
         const r = DomElement.create("div", "drop-down");
         r.style.display = "none";
         e.appendChild(r);
-        const s = {
+        const l = {
             control: i,
             dropDown: r,
             select: n,
@@ -282,12 +280,12 @@ var Config;
             multiSelectEnabled: n.hasAttribute("multiple")
         };
         if (!o.showDropDownButton) {
-            i.onclick = () => f(s);
+            i.onclick = () => f(l);
         }
-        t.push(s);
-        return s;
+        t.push(l);
+        return l;
     }
-    function s(e) {
+    function l(e) {
         if (e.bindingOptions.showDropDownButton) {
             const t = DomElement.create("div", "button");
             e.control.appendChild(t);
@@ -297,7 +295,7 @@ var Config;
             t.onclick = () => f(e);
         }
     }
-    function l(e) {
+    function s(e) {
         const t = e.select.options;
         const n = t.length;
         e.dropDown.innerHTML = "";
@@ -338,7 +336,7 @@ var Config;
         const o = n.length;
         let i = false;
         e.control.innerHTML = "";
-        s(e);
+        l(e);
         for (let t = 0; t < o; t++) {
             const o = n[t];
             if (o.selected) {
@@ -383,7 +381,7 @@ var Config;
         if (!p(e)) {
             setTimeout((function() {
                 e.dropDown.style.display = "block";
-                l(e);
+                s(e);
                 u(e, false);
                 Trigger.customEvent(e.bindingOptions.onDropDownShow);
             }), e.bindingOptions.dropDownShowDelay);
@@ -460,4 +458,4 @@ var Config;
             window.$select = S;
         }
     })();
-})();//# sourceMappingURL=select.js.map
+})();//# sourceMappingURL=select.esm.js.map

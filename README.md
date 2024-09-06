@@ -2,15 +2,15 @@
 Select.js
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Select.js%2C%20a%20free%20JavaScript%select%builder&url=https://github.com/williamtroup/Select.js&hashtags=javascript,html,select)
-[![npm](https://img.shields.io/badge/npmjs-v0.5.0-blue)](https://www.npmjs.com/package/jselect.js)
-[![nuget](https://img.shields.io/badge/nuget-v0.5.0-purple)](https://www.nuget.org/packages/jSelect.js/)
+[![npm](https://img.shields.io/badge/npmjs-v1.0.0-blue)](https://www.npmjs.com/package/jselect.js)
+[![nuget](https://img.shields.io/badge/nuget-v1.0.0-purple)](https://www.nuget.org/packages/jSelect.js/)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/williamtroup/Select.js/blob/main/LICENSE.txt)
 [![discussions Welcome](https://img.shields.io/badge/discussions-Welcome-red)](https://github.com/williamtroup/Select.js/discussions)
 [![coded by William Troup](https://img.shields.io/badge/coded_by-William_Troup-yellow)](https://github.com/williamtroup)
 </h1>
 
 > <p align="center">A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!</p>
-> <p align="center">v0.5.0</p>
+> <p align="center">v1.0.0</p>
 <br />
 
 ![Select.js](docs/images/main.png)
@@ -21,7 +21,9 @@ Select.js
 <h1>What features does Select.js have?</h1>
 
 - Zero-dependencies and extremely lightweight!
+- Written in TypeScript, allowing greater support for React, Angular, and other libraries!
 - Maintains existing SELECT DOM element for FORM compatibility.
+- Easily select and de-select your list items, which are shown as tags!
 - Full API available via public functions.
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
 - Full CSS theme support (using :root variables, with a default dark-mode theme).
@@ -85,22 +87,22 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 ### 3. DOM Element Binding:
 
 ```markdown
-<select multiple="multiple" data-select-options="{ 'render': true }">
+<select multiple="multiple" data-select-js="{ 'render': true }">
     <option value="1" selected="selected">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>
 </select>
 
-<select data-select-options="{ 'render': true }">
+<select data-select-js="{ 'render': true }">
     <option value="1">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>
 </select>
 ```
 
-To see a list of all the available binding options you can use for "data-select-options", click [here](docs/binding/OPTIONS.md).
+To see a list of all the available binding options you can use for "data-select-js", click [here](docs/binding/OPTIONS.md).
 
-To see a list of all the available custom triggers you can use for "data-select-options", click [here](docs/binding/CUSTOM_TRIGGERS.md).
+To see a list of all the available custom triggers you can use for "data-select-js", click [here](docs/binding/CUSTOM_TRIGGERS.md).
 
 <br>
 

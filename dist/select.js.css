@@ -1,11 +1,21 @@
 /*
- * Select.js Library v0.5.0
+ * Select.js Library v1.0.0
  *
  * Copyright 2023 Bunoon
  * Released under the MIT License
  */
 :root {
-  --select-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --select-js-default-font: system-ui,
+                              -apple-system,
+                              "Segoe UI", Roboto,
+                              "Helvetica Neue",
+                              "Noto Sans",
+                              "Liberation Sans",
+                              Arial, sans-serif,
+                              "Apple Color Emoji",
+                              "Segoe UI Emoji",
+                              "Segoe UI Symbol",
+                              "Noto Color Emoji";
   --select-js-color-black: #3b3a3a;
   --select-js-color-white: #F5F5F5;
   --select-js-color-gray: #AAAAAA;
@@ -158,4 +168,6 @@ div.select-js div.control div.no-items-selected {
   color: var(--select-js-color-black);
   padding: var(--select-js-spacing);
   display: inline-block;
-}/*# sourceMappingURL=select.js.css.map */
+}
+
+/*# sourceMappingURL=select.js.css.map */

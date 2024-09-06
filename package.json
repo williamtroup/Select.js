@@ -2,31 +2,49 @@
     "name": "jselect.js",
     "title": "Select.js",
     "description": "A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!",
-    "version": "0.5.0",
-    "main": "dist/select.js",
+    "version": "1.0.0",
     "homepage": "https://www.william-troup.com/select-js/",
     "author": {
-      "name": "Bunoon"
+        "name": "Bunoon"
     },
     "repository": {
-      "type": "git",
-      "url": "https://github.com/williamtroup/Select.js"
+        "type": "git",
+        "url": "https://github.com/williamtroup/Select.js"
     },
+    "license": "MIT",
     "keywords": [
-      "javascript",
-      "css",
-      "select",
-      "drop-down",
-      "html5",
-      "multi-select",
-      "Select.js",
-      "multiple",
-      "tag",
-      "selector",
-      "list"
+        "javascript",
+        "css",
+        "select",
+        "drop-down",
+        "html5",
+        "multi-select",
+        "Select.js",
+        "multiple",
+        "tag",
+        "selector",
+        "list"
     ],
     "bugs": {
-      "url": "https://github.com/williamtroup/Select.js/issues"
+        "url": "https://github.com/williamtroup/Select.js/issues"
     },
-    "license": "MIT"
-  }
+    "main": "dist/select.js",
+    "types": "dist/select.d.ts",
+    "scripts": {
+        "build-all": "npm run build && npm run build-minimized",
+        "build": "tsup --config tsup.build.config.ts && tsup --config tsup.build.esm.config.ts && sass src/select.js.scss dist/select.js.css",
+        "build-minimized": "tsup --config tsup.build.min.config.ts && sass src/select.js.scss dist/select.js.min.css --style=compressed --no-source-map",
+        "build-typescript": "tsup --config tsup.build.config.ts",
+        "build-typescript-esm": "tsup --config tsup.build.esm.config.ts",
+        "build-typescript-minimized": "tsup --config tsup.build.min.config.ts",
+        "build-sass": "sass src/select.js.scss dist/select.js.css",
+        "build-sass-minimized": "sass src/select.js.scss dist/select.js.min.css --style=compressed --no-source-map"
+    },
+    "devDependencies": {
+        "@swc/core": "^1.7.23",
+        "sass": "^1.77.8",
+        "terser": "^5.31.6",
+        "tsup": "^8.2.4",
+        "typescript": "^5.5.4"
+    }
+}
