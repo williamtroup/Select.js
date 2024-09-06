@@ -39,17 +39,6 @@ export type PublicApi = {
      */
 
 	/**
-	 * getIds().
-	 *
-	 * Returns an array of element IDs that have been rendered.
-	 *
-	 * @public
-	 *
-	 * @returns     {string[]}                                              The element IDs that have been rendered.
-	 */
-	getIds: () => string[];
-
-	/**
 	 * getVersion().
 	 *
 	 * Returns the version of Select.js.
