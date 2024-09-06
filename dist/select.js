@@ -223,7 +223,7 @@ var Config;
                         const o = r(n, t, e);
                         l(o);
                         u(o, false);
-                        f(o);
+                        a(o);
                         Trigger.customEvent(e.onRenderComplete, e._currentView.element);
                     }
                 } else {
@@ -282,9 +282,7 @@ var Config;
             multiSelectEnabled: n.hasAttribute("multiple")
         };
         if (!o.showDropDownButton) {
-            i.onclick = function() {
-                a(s);
-            };
+            i.onclick = () => f(s);
         }
         t.push(s);
         return s;
@@ -296,9 +294,7 @@ var Config;
             if (p(e)) {
                 t.classList.add("button-open");
             }
-            t.onclick = function() {
-                a(e);
-            };
+            t.onclick = () => f(e);
         }
     }
     function l(e) {
@@ -317,7 +313,7 @@ var Config;
         if (o.selected) {
             n.classList.add("selected");
         }
-        n.onclick = function(o) {
+        n.onclick = o => {
             DomElement.cancelBubble(o);
             if (!e.multiSelectEnabled) {
                 const t = e.select.options.length;
@@ -369,7 +365,7 @@ var Config;
             const o = DomElement.create("div", "remove");
             o.innerHTML = e.bindingOptions.removeText;
             n.appendChild(o);
-            o.onclick = function(n) {
+            o.onclick = n => {
                 DomElement.cancelBubble(n);
                 e.select.options[t].selected = false;
                 g(e);
@@ -377,15 +373,13 @@ var Config;
             };
         }
     }
-    function f(e) {
-        const t = function() {
-            g(e);
-        };
+    function a(e) {
+        const t = () => g(e);
         document.body.addEventListener("click", t);
         window.addEventListener("resize", t);
         window.addEventListener("click", t);
     }
-    function a(e) {
+    function f(e) {
         if (!p(e)) {
             setTimeout((function() {
                 e.dropDown.style.display = "block";

@@ -154,9 +154,7 @@ import { Config } from "./ts/options/config";
         };
 
         if ( !bindingOptions.showDropDownButton ) {
-            control.onclick = function() {
-                showDropDownMenu( controlElement );
-            };
+            control.onclick = () => showDropDownMenu( controlElement );
         }
 
         _control_Elements.push( controlElement );
@@ -173,9 +171,7 @@ import { Config } from "./ts/options/config";
                 dropDownButton.classList.add( "button-open" );
             }
 
-            dropDownButton.onclick = function() {
-                showDropDownMenu( controlElement );
-            };
+            dropDownButton.onclick = () => showDropDownMenu( controlElement );
         }
     }
 
@@ -201,7 +197,7 @@ import { Config } from "./ts/options/config";
             item.classList.add( "selected" );
         }
 
-        item.onclick = function( e: MouseEvent ) {
+        item.onclick = ( e: MouseEvent ) => {
             DomElement.cancelBubble( e );
 
             if ( !controlElement.multiSelectEnabled ) {
@@ -271,7 +267,7 @@ import { Config } from "./ts/options/config";
             removeButton.innerHTML = controlElement.bindingOptions.removeText!;
             selectedItem.appendChild( removeButton );
 
-            removeButton.onclick = function( e: MouseEvent ) {
+            removeButton.onclick = ( e: MouseEvent ) => {
                 DomElement.cancelBubble( e );
     
                 controlElement.select.options[ optionIndex ].selected = false;
@@ -283,9 +279,7 @@ import { Config } from "./ts/options/config";
     }
 
     function buildDocumentEvents( controlElement: ControlElement ) : void {
-        const hideMenu: any = function() {
-            hideDropDownMenu( controlElement );
-        };
+        const hideMenu: any = () => hideDropDownMenu( controlElement );
 
         document.body.addEventListener( "click", hideMenu );
         window.addEventListener( "resize", hideMenu );
