@@ -14,6 +14,9 @@
 - Removed the "src" and "dist" folders under "test".  Only the dist versions remain, removing duplication.
 - Added "BUILD_INSTRUCTIONS.md" to help first-time users set up their dev environments.
 
+#### **Binding Options:**
+- BREAKING: Renamed the binding attribute "data-select-options" to "data-select-js".
+
 <br>
 
 
