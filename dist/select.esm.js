@@ -1,5 +1,3 @@
-"use strict";
-
 var Is;
 
 (e => {
@@ -470,4 +468,4 @@ var Config;
             window.$select = S;
         }
     })();
-})();//# sourceMappingURL=select.js.map
+})();//# sourceMappingURL=select.esm.js.map
