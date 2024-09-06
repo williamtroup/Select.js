@@ -16,6 +16,14 @@ export type StringToJson = {
     object: any;
 };
 
+export type ControlElement = {
+    control: HTMLElement;
+    dropDown: HTMLElement;
+    select: HTMLSelectElement;
+    bindingOptions: BindingOptions;
+    multiSelectEnabled: boolean;
+};
+
 export type Configuration = {
 	safeMode?: boolean;
 	domElementTypes?: string[] | string;
