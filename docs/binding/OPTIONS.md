@@ -1,6 +1,6 @@
 # Select.js - Binding Options:
 
-Below are all the JSON properties that can be passed in the "data-select-options" binding attribute for a DOM element.
+Below are all the JSON properties that can be passed in the "data-select-js" binding attribute for a DOM element.
 <br>
 <br>
 
@@ -29,7 +29,7 @@ Below are all the JSON properties that can be passed in the "data-select-options
 ## Binding Example:
 
 ```markdown
-<select multiple="multiple" data-select-options="{ 'render': true }">
+<select multiple="multiple" data-select-js="{ 'render': true }">
     <option value="1" selected="selected">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>

@@ -1,6 +1,6 @@
 # Select.js - Binding Options - Custom Triggers:
 
-Below is a list of all the custom triggers supported in the "data-select-options" binding attribute for DOM elements.
+Below is a list of all the custom triggers supported in the "data-select-js" binding attribute for DOM elements.
 <br>
 <br>
 
@@ -37,7 +37,7 @@ Fires when the drop-down menu is hidden.
 ## Binding Example:
 
 ```markdown
-<select multiple="multiple" data-select-options="{ 'onRenderComplete': yourJsFunction }">
+<select multiple="multiple" data-select-js="{ 'onRenderComplete': yourJsFunction }">
     <option value="1" selected="selected">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>

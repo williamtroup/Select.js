@@ -86,22 +86,22 @@ Make sure you include the "DOCTYPE html" tag at the top of your HTML, as follows
 ### 3. DOM Element Binding:
 
 ```markdown
-<select multiple="multiple" data-select-options="{ 'render': true }">
+<select multiple="multiple" data-select-js="{ 'render': true }">
     <option value="1" selected="selected">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>
 </select>
 
-<select data-select-options="{ 'render': true }">
+<select data-select-js="{ 'render': true }">
     <option value="1">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>
 </select>
 ```
 
-To see a list of all the available binding options you can use for "data-select-options", click [here](docs/binding/OPTIONS.md).
+To see a list of all the available binding options you can use for "data-select-js", click [here](docs/binding/OPTIONS.md).
 
-To see a list of all the available custom triggers you can use for "data-select-options", click [here](docs/binding/CUSTOM_TRIGGERS.md).
+To see a list of all the available custom triggers you can use for "data-select-js", click [here](docs/binding/CUSTOM_TRIGGERS.md).
 
 <br>
 
