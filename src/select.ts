@@ -11,7 +11,13 @@
  */
 
 
-import { PublicApi } from "./ts/api";
+import {
+    type BindingOptions,
+    type ControlElement,
+    type StringToJson,
+    type Configuration } from "./ts/type";
+    
+import { type PublicApi } from "./ts/api";
 import { Trigger } from "./ts/area/trigger";
 import { Constants } from "./ts/constant";
 import { Default } from "./ts/data/default";
@@ -20,7 +26,6 @@ import { Is } from "./ts/data/is";
 import { DomElement } from "./ts/dom/dom";
 import { Binding } from "./ts/options/binding";
 import { Config } from "./ts/options/config";
-import { BindingOptions, ControlElement, StringToJson, type Configuration } from "./ts/type";
 
 
 ( () => {
