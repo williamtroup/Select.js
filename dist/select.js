@@ -23,14 +23,14 @@ var Is;
         return t(e) && typeof e === "function";
     }
     e.definedFunction = r;
-    function l(e) {
+    function s(e) {
         return t(e) && typeof e === "number";
     }
-    e.definedNumber = l;
-    function s(e) {
+    e.definedNumber = s;
+    function l(e) {
         return n(e) && e instanceof Array;
     }
-    e.definedArray = s;
+    e.definedArray = l;
 })(Is || (Is = {}));
 
 var Trigger;
@@ -53,10 +53,6 @@ var Constants;
 var Default2;
 
 (Default => {
-    function getAnyString(e, t) {
-        return typeof e === "string" ? e : t;
-    }
-    Default.getAnyString = getAnyString;
     function getString(e, t) {
         return Is.definedString(e) ? e : t;
     }
@@ -218,27 +214,27 @@ var Config;
         if (Is.defined(t) && t.hasAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME)) {
             const o = t.getAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME);
             if (Is.definedString(o)) {
-                const l = Default2.getObjectFromString(o, e);
-                if (l.parsed && Is.definedObject(l.object)) {
-                    const e = Binding.Options.getForNewInstance(l.object, t);
+                const s = Default2.getObjectFromString(o, e);
+                if (s.parsed && Is.definedObject(s.object)) {
+                    const e = Binding.Options.getForNewInstance(s.object, t);
                     if (e.render) {
                         t.removeAttribute(Constants.SELECT_JS_ATTRIBUTE_NAME);
                         const n = i(t);
                         const o = r(n, t, e);
-                        s(o);
+                        l(o);
                         u(o, false);
                         f(o);
                         Trigger.customEvent(e.onRenderComplete, e._currentView.element);
                     }
                 } else {
                     if (!e.safeMode) {
-                        console.error("The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' is not a valid object.");
+                        console.error(`The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' is not a valid object.`);
                         n = false;
                     }
                 }
             } else {
                 if (!e.safeMode) {
-                    console.error("The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' has not been set correctly.");
+                    console.error(`The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' has not been set correctly.`);
                     n = false;
                 }
             }
@@ -262,15 +258,15 @@ var Config;
                 break;
             }
         }
-        const l = DomElement.create("div", "select-js");
+        const s = DomElement.create("div", "select-js");
         if (Is.defined(i)) {
-            t.insertBefore(l, i);
+            t.insertBefore(s, i);
         } else {
-            t.appendChild(l);
+            t.appendChild(s);
         }
         t.removeChild(e);
-        l.appendChild(e);
-        return l;
+        s.appendChild(e);
+        return s;
     }
     function r(e, n, o) {
         const i = DomElement.create("div", "control");
@@ -278,7 +274,7 @@ var Config;
         const r = DomElement.create("div", "drop-down");
         r.style.display = "none";
         e.appendChild(r);
-        const l = {
+        const s = {
             control: i,
             dropDown: r,
             select: n,
@@ -287,25 +283,25 @@ var Config;
         };
         if (!o.showDropDownButton) {
             i.onclick = function() {
-                a(l);
+                a(s);
             };
         }
-        t.push(l);
-        return l;
+        t.push(s);
+        return s;
     }
-    function l(e) {
+    function s(e) {
         if (e.bindingOptions.showDropDownButton) {
             const t = DomElement.create("div", "button");
             e.control.appendChild(t);
             if (p(e)) {
-                t.className += " " + "button-open";
+                t.classList.add("button-open");
             }
             t.onclick = function() {
                 a(e);
             };
         }
     }
-    function s(e) {
+    function l(e) {
         const t = e.select.options;
         const n = t.length;
         e.dropDown.innerHTML = "";
@@ -319,7 +315,7 @@ var Config;
         n.innerHTML = o.text;
         e.dropDown.appendChild(n);
         if (o.selected) {
-            n.className += " selected";
+            n.classList.add("selected");
         }
         n.onclick = function(o) {
             DomElement.cancelBubble(o);
@@ -346,7 +342,7 @@ var Config;
         const o = n.length;
         let i = false;
         e.control.innerHTML = "";
-        l(e);
+        s(e);
         for (let t = 0; t < o; t++) {
             const o = n[t];
             if (o.selected) {
@@ -393,7 +389,7 @@ var Config;
         if (!p(e)) {
             setTimeout((function() {
                 e.dropDown.style.display = "block";
-                s(e);
+                l(e);
                 u(e, false);
                 Trigger.customEvent(e.bindingOptions.onDropDownShow);
             }), e.bindingOptions.dropDownShowDelay);

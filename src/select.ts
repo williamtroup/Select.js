@@ -16,7 +16,7 @@ import {
     type ControlElement,
     type StringToJson,
     type Configuration } from "./ts/type";
-    
+
 import { type PublicApi } from "./ts/api";
 import { Trigger } from "./ts/area/trigger";
 import { Constants } from "./ts/constant";
@@ -86,14 +86,14 @@ import { Config } from "./ts/options/config";
 
                 } else {
                     if ( !_configuration.safeMode ) {
-                        console.error( "The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' is not a valid object." );
+                        console.error( `The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' is not a valid object.` );
                         result = false;
                     }
                 }
 
             } else {
                 if ( !_configuration.safeMode ) {
-                    console.error( "The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' has not been set correctly." );
+                    console.error( `The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' has not been set correctly.` );
                     result = false;
                 }
             }
@@ -170,7 +170,7 @@ import { Config } from "./ts/options/config";
             controlElement.control.appendChild( dropDownButton );
 
             if ( isDropDownMenuVisible( controlElement ) ) {
-                dropDownButton.className += Char.space + "button-open";
+                dropDownButton.classList.add( "button-open" );
             }
 
             dropDownButton.onclick = function() {
@@ -198,7 +198,7 @@ import { Config } from "./ts/options/config";
         controlElement.dropDown.appendChild( item );
 
         if ( option.selected ) {
-            item.className += " selected";
+            item.classList.add( "selected" );
         }
 
         item.onclick = function( e: MouseEvent ) {

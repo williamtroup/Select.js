@@ -51,10 +51,6 @@ var Constants;
 var Default2;
 
 (Default => {
-    function getAnyString(e, t) {
-        return typeof e === "string" ? e : t;
-    }
-    Default.getAnyString = getAnyString;
     function getString(e, t) {
         return Is.definedString(e) ? e : t;
     }
@@ -230,13 +226,13 @@ var Config;
                     }
                 } else {
                     if (!e.safeMode) {
-                        console.error("The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' is not a valid object.");
+                        console.error(`The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' is not a valid object.`);
                         n = false;
                     }
                 }
             } else {
                 if (!e.safeMode) {
-                    console.error("The attribute '" + Constants.SELECT_JS_ATTRIBUTE_NAME + "' has not been set correctly.");
+                    console.error(`The attribute '${Constants.SELECT_JS_ATTRIBUTE_NAME}' has not been set correctly.`);
                     n = false;
                 }
             }
@@ -296,7 +292,7 @@ var Config;
             const t = DomElement.create("div", "button");
             e.control.appendChild(t);
             if (p(e)) {
-                t.className += " " + "button-open";
+                t.classList.add("button-open");
             }
             t.onclick = function() {
                 a(e);
@@ -317,7 +313,7 @@ var Config;
         n.innerHTML = o.text;
         e.dropDown.appendChild(n);
         if (o.selected) {
-            n.className += " selected";
+            n.classList.add("selected");
         }
         n.onclick = function(o) {
             DomElement.cancelBubble(o);
