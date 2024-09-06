@@ -21,6 +21,7 @@ Select.js
 <h1>What features does Select.js have?</h1>
 
 - Zero-dependencies and extremely lightweight!
+- Written in TypeScript, allowing greater support for React, Angular, and other libraries!
 - Maintains existing SELECT DOM element for FORM compatibility.
 - Full API available via public functions.
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
