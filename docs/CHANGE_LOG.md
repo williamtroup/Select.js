@@ -1,5 +1,11 @@
 # Select.js - Change Log:
 
+## Version 1.0.0:
+- 
+
+<br>
+
+
 ## Version 0.5.0:
 
 #### **General Improvements:**
