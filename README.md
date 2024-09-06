@@ -23,6 +23,7 @@ Select.js
 - Zero-dependencies and extremely lightweight!
 - Written in TypeScript, allowing greater support for React, Angular, and other libraries!
 - Maintains existing SELECT DOM element for FORM compatibility.
+- Easily select and de-select your list items, which are shown as tags!
 - Full API available via public functions.
 - Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
 - Full CSS theme support (using :root variables, with a default dark-mode theme).
