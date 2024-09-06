@@ -445,7 +445,7 @@ var Config;
             return S;
         },
         getVersion: function() {
-            return "3.0.1";
+            return "1.0.0";
         }
     };
     (() => {

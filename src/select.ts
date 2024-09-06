@@ -404,7 +404,7 @@ import { Config } from "./ts/options/config";
          */
 
         getVersion: function () : string {
-            return "3.0.1";
+            return "1.0.0";
         }
     };
 
