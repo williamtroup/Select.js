@@ -23,6 +23,15 @@ export type Configuration = {
 
 export type BindingOptions = {
     _currentView: BindingOptionsCurrentView;
+    render?: boolean;
+    dropDownShowDelay?: number;
+    showDropDownButton?: boolean;
+    removeText?: string;
+    noItemsSelectedText?: string;
+    onRenderComplete?: ( element: HTMLElement ) => void;
+    onSelectedItemsChanged?: ( selectValues: any[] ) => void;
+    onDropDownShow?: ( element: HTMLElement ) => void;
+    onDropDownHide?: ( element: HTMLElement ) => void;
 };
 
 export type BindingOptionsCurrentView = {
