@@ -1,13 +1,13 @@
 /**
- * JsonTree.js
+ * Select.js
  * 
- * A lightweight JavaScript library that generates customizable tree views to better visualize, and edit, JSON data.
+ * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
- * @file        default.ts
- * @version     v3.0.1
+ * @file        default.js
+ * @version     v1.0.0
  * @author      Bunoon
  * @license     MIT License
- * @copyright   Bunoon 2024
+ * @copyright   Bunoon 2023
  */
 
 
