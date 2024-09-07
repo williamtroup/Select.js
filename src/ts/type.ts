@@ -34,6 +34,7 @@ export type BindingOptions = {
     render?: boolean;
     dropDownShowDelay?: number;
     showDropDownButton?: boolean;
+    showRemoveButtonOnLeft?: boolean;
     text?: BindingOptionsText;
     events?: BindingOptionsEvents;
 };

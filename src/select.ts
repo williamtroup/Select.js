@@ -265,7 +265,12 @@ import { Config } from "./ts/options/config";
         if ( controlElement.multiSelectEnabled ) {
             const removeButton: HTMLElement = DomElement.create( "div", "remove" );
             removeButton.innerHTML = controlElement.bindingOptions.text!.removeText!;
-            selectedItem.appendChild( removeButton );
+
+            if ( controlElement.bindingOptions.showRemoveButtonOnLeft ) {
+                selectedItem.insertBefore( removeButton, selectedItemText );
+            } else {
+                selectedItem.appendChild( removeButton );
+            }
 
             removeButton.onclick = ( e: MouseEvent ) => {
                 DomElement.cancelBubble( e );

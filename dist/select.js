@@ -157,6 +157,7 @@ var Binding;
             t.render = Default2.getBoolean(t.render, true);
             t.dropDownShowDelay = Default2.getNumber(t.dropDownShowDelay, 50);
             t.showDropDownButton = Default2.getBoolean(t.showDropDownButton, true);
+            t.showRemoveButtonOnLeft = Default2.getBoolean(t.showRemoveButtonOnLeft, false);
             t = i(t);
             t = r(t);
             return t;
@@ -225,7 +226,7 @@ var Config;
                         const o = r(n, t, e);
                         l(o);
                         u(o, false);
-                        a(o);
+                        f(o);
                         Trigger.customEvent(e.events.onRenderComplete, e._currentView.element);
                     }
                 } else {
@@ -284,7 +285,7 @@ var Config;
             multiSelectEnabled: n.hasAttribute("multiple")
         };
         if (!o.showDropDownButton) {
-            i.onclick = () => f(s);
+            i.onclick = () => a(s);
         }
         t.push(s);
         return s;
@@ -296,7 +297,7 @@ var Config;
             if (p(e)) {
                 t.classList.add("button-open");
             }
-            t.onclick = () => f(e);
+            t.onclick = () => a(e);
         }
     }
     function l(e) {
@@ -364,10 +365,14 @@ var Config;
         o.innerHTML = e.select.options[t].text;
         n.appendChild(o);
         if (e.multiSelectEnabled) {
-            const o = DomElement.create("div", "remove");
-            o.innerHTML = e.bindingOptions.text.removeText;
-            n.appendChild(o);
-            o.onclick = n => {
+            const i = DomElement.create("div", "remove");
+            i.innerHTML = e.bindingOptions.text.removeText;
+            if (e.bindingOptions.showRemoveButtonOnLeft) {
+                n.insertBefore(i, o);
+            } else {
+                n.appendChild(i);
+            }
+            i.onclick = n => {
                 DomElement.cancelBubble(n);
                 e.select.options[t].selected = false;
                 g(e);
@@ -375,13 +380,13 @@ var Config;
             };
         }
     }
-    function a(e) {
+    function f(e) {
         const t = () => g(e);
         document.body.addEventListener("click", t);
         window.addEventListener("resize", t);
         window.addEventListener("click", t);
     }
-    function f(e) {
+    function a(e) {
         if (!p(e)) {
             setTimeout((function() {
                 e.dropDown.style.display = "block";

@@ -4,7 +4,8 @@
 
 #### **Binding Options:**
 - BREAKING: All binding option events are now available under a new area called "events".
-- BREAKING: All binding option text options are now available under a new area called "text". 
+- BREAKING: All binding option text options are now available under a new area called "text".
+- Added a new binding option called "showRemoveButtonOnLeft" (defaults to false), which states if the remove button is shown to the left of the select items text.
 
 <br>
 

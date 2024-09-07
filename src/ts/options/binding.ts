@@ -36,7 +36,8 @@ export namespace Binding {
             options.render = Default.getBoolean( options.render, true );
             options.dropDownShowDelay = Default.getNumber( options.dropDownShowDelay, 50 );
             options.showDropDownButton = Default.getBoolean( options.showDropDownButton, true );
-
+            options.showRemoveButtonOnLeft = Default.getBoolean( options.showRemoveButtonOnLeft, false );
+            
             options = getText( options );
             options = getCustomTriggers( options );
     

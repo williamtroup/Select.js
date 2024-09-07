@@ -183,7 +183,6 @@ div.select-js {
             }
 
             div.remove {
-                margin-left: var(--select-js-spacing);
                 display: inline-block;
                 font-weight: bold;
                 transition: var(--select-js-transition);
@@ -191,6 +190,14 @@ div.select-js {
                 &:hover {
                     cursor: pointer;
                     opacity: 0.7;
+                }
+
+                &:first-child {
+                    margin-right: var(--select-js-spacing);
+                }
+
+                &:last-child {
+                    margin-left: var(--select-js-spacing);
                 }
             }
         }
