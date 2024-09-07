@@ -11,6 +11,9 @@
 #### **SASS/CSS:**
 - Renamed the CSS class "button" to "open-close-button".
 
+#### **Documentation:**
+- Updates to the README files to make the features stand out.
+
 <br>
 
 

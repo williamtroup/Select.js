@@ -12,15 +12,15 @@
 
 ## What features does Select.js have?
 
-- Zero-dependencies and extremely lightweight!
-- Written in TypeScript, allowing greater support for React, Angular, and other libraries!
-- Maintains existing SELECT DOM element for FORM compatibility.
-- Easily select and de-select your list items, which are shown as tags!
-- Full API available via public functions.
-- Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
-- Full CSS theme support (using :root variables, with a default dark-mode theme).
-- Custom triggers for actions (when elements are rendered, selection is changed, etc).
-- Shortcut keys (click [here](https://github.com/williamtroup/docs/SHORTCUT_KEYS.md) to see the full list).
+- 😏 Zero-dependencies and extremely lightweight!
+- 🦾 Written in TypeScript, allowing greater support for React, Angular, and other libraries!
+- ✏️ Maintains existing SELECT DOM element for FORM compatibility, allowing easy editing.
+- ☑️ Easily select and de-select your list items, which are shown as tags!
+- 💻 Full API available via public functions.
+- 📱 Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
+- 🌈 Full CSS theme support (using :root variables, with a default dark-mode theme).
+- 🚀 Custom triggers for actions (when elements are rendered, selection is changed, etc).
+- 🔠 Shortcut keys (click [here](https://github.com/williamtroup/docs/SHORTCUT_KEYS.md) to see the full list).
 
 
 ## What browsers are supported?
