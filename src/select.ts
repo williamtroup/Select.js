@@ -4,7 +4,7 @@
  * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
  * @file        select.ts
- * @version     v1.0.0
+ * @version     v1.1.0
  * @author      Bunoon
  * @license     MIT License
  * @copyright   Bunoon 2023
@@ -404,7 +404,7 @@ import { Config } from "./ts/options/config";
          */
 
         getVersion: function () : string {
-            return "1.0.0";
+            return "1.1.0";
         }
     };
 
