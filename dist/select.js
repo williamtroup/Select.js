@@ -165,7 +165,7 @@ var Binding;
         t.get = o;
         function i(e) {
             e.text = Default2.getObject(e.text, {});
-            e.text.removeText = Default2.getString(e.text.removeText, "X");
+            e.text.removeText = Default2.getString(e.text.removeText, "✖");
             e.text.noItemsSelectedText = Default2.getString(e.text.noItemsSelectedText, "There are no items selected");
             return e;
         }

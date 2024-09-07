@@ -153,7 +153,7 @@ div.select-js div.control div.selected-item span.text {
 }
 div.select-js div.control div.selected-item div.remove {
   display: inline-block;
-  font-weight: bold;
+  font-weight: 900;
   transition: var(--select-js-transition);
 }
 div.select-js div.control div.selected-item div.remove:hover {

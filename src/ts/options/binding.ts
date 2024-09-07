@@ -46,7 +46,7 @@ export namespace Binding {
     
         function getText( options: BindingOptions ) : BindingOptions {
             options.text = Default.getObject( options.text, {} as BindingOptionsText );
-            options.text!.removeText = Default.getString( options.text!.removeText, "X" );
+            options.text!.removeText = Default.getString( options.text!.removeText, "✖" );
             options.text!.noItemsSelectedText = Default.getString( options.text!.noItemsSelectedText, "There are no items selected" );
 
             return options;
