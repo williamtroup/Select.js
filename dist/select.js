@@ -292,7 +292,7 @@ var Config;
     }
     function s(e) {
         if (e.bindingOptions.showDropDownButton) {
-            const t = DomElement.create("div", "button");
+            const t = DomElement.create("div", "open-close-button");
             e.control.appendChild(t);
             if (p(e)) {
                 t.classList.add("button-open");

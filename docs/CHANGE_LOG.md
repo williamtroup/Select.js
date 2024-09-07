@@ -8,6 +8,9 @@
 - Added a new binding option called "showRemoveButtonOnLeft" (defaults to false), which states if the remove button is shown to the left of the select items text.
 - Updated the default value for "text.removeText" to "✖".
 
+#### **SASS/CSS:**
+- Renamed the CSS class "button" to "open-close-button".
+
 <br>
 
 

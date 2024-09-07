@@ -164,7 +164,7 @@ import { Config } from "./ts/options/config";
 
     function renderControlButton( controlElement: ControlElement ) : void {
         if ( controlElement.bindingOptions.showDropDownButton ) {
-            const dropDownButton: HTMLElement = DomElement.create( "div", "button" );
+            const dropDownButton: HTMLElement = DomElement.create( "div", "open-close-button" );
             controlElement.control.appendChild( dropDownButton );
 
             if ( isDropDownMenuVisible( controlElement ) ) {
