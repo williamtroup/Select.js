@@ -4,7 +4,7 @@
  * A lightweight, and easy-to-use, JavaScript library for creating multi-select drop-down lists!
  * 
  * @file        select.ts
- * @version     v1.0.0
+ * @version     v1.1.0
  * @author      Bunoon
  * @license     MIT License
  * @copyright   Bunoon 2023
@@ -81,7 +81,7 @@ import { Config } from "./ts/options/config";
                         renderSelectedItems( controlElements, false );
                         buildDocumentEvents( controlElements );
 
-                        Trigger.customEvent( bindingOptions.onRenderComplete!, bindingOptions._currentView.element );
+                        Trigger.customEvent( bindingOptions.events!.onRenderComplete!, bindingOptions._currentView.element );
                     }
 
                 } else {
@@ -164,7 +164,7 @@ import { Config } from "./ts/options/config";
 
     function renderControlButton( controlElement: ControlElement ) : void {
         if ( controlElement.bindingOptions.showDropDownButton ) {
-            const dropDownButton: HTMLElement = DomElement.create( "div", "button" );
+            const dropDownButton: HTMLElement = DomElement.create( "div", "open-close-button" );
             controlElement.control.appendChild( dropDownButton );
 
             if ( isDropDownMenuVisible( controlElement ) ) {
@@ -245,12 +245,12 @@ import { Config } from "./ts/options/config";
 
         if ( !optionsSelected ) {
             const noItemsSelected: HTMLElement = DomElement.create( "div", "no-items-selected" );
-            noItemsSelected.innerHTML = controlElement.bindingOptions.noItemsSelectedText!;
+            noItemsSelected.innerHTML = controlElement.bindingOptions.text!.noItemsSelectedText!;
             controlElement.control.appendChild( noItemsSelected );
         }
 
         if ( callCustomTrigger ) {
-            Trigger.customEvent( controlElement.bindingOptions.onSelectedItemsChanged!, getValuesSelected( controlElement ) );
+            Trigger.customEvent( controlElement.bindingOptions.events!.onSelectedItemsChanged!, getValuesSelected( controlElement ) );
         }
     }
 
@@ -264,8 +264,13 @@ import { Config } from "./ts/options/config";
 
         if ( controlElement.multiSelectEnabled ) {
             const removeButton: HTMLElement = DomElement.create( "div", "remove" );
-            removeButton.innerHTML = controlElement.bindingOptions.removeText!;
-            selectedItem.appendChild( removeButton );
+            removeButton.innerHTML = controlElement.bindingOptions.text!.removeText!;
+
+            if ( controlElement.bindingOptions.showRemoveButtonOnLeft ) {
+                selectedItem.insertBefore( removeButton, selectedItemText );
+            } else {
+                selectedItem.appendChild( removeButton );
+            }
 
             removeButton.onclick = ( e: MouseEvent ) => {
                 DomElement.cancelBubble( e );
@@ -294,7 +299,7 @@ import { Config } from "./ts/options/config";
                 renderDropDownItems( controlElement );
                 renderSelectedItems( controlElement, false );
 
-                Trigger.customEvent( controlElement.bindingOptions.onDropDownShow! );
+                Trigger.customEvent( controlElement.bindingOptions.events!.onDropDownShow! );
 
             }, controlElement.bindingOptions.dropDownShowDelay );
 
@@ -309,7 +314,7 @@ import { Config } from "./ts/options/config";
 
             renderSelectedItems( controlElement, false );
 
-            Trigger.customEvent( controlElement.bindingOptions.onDropDownHide! );
+            Trigger.customEvent( controlElement.bindingOptions.events!.onDropDownHide! );
         }
     }
 
@@ -404,7 +409,7 @@ import { Config } from "./ts/options/config";
          */
 
         getVersion: function () : string {
-            return "1.0.0";
+            return "1.1.0";
         }
     };
 

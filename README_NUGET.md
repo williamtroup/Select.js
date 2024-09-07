@@ -1,8 +1,8 @@
-# Select.js v1.0.0
+# Select.js v1.1.0
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Select.js%2C%20a%20free%20JavaScript%select%builder&url=https://github.com/williamtroup/Select.js&hashtags=javascript,html,select)
-[![npm](https://img.shields.io/badge/npmjs-v1.0.0-blue)](https://www.npmjs.com/package/jselect.js)
-[![nuget](https://img.shields.io/badge/nuget-v1.0.0-purple)](https://www.nuget.org/packages/jSelect.js/)
+[![npm](https://img.shields.io/badge/npmjs-v1.1.0-blue)](https://www.npmjs.com/package/jselect.js)
+[![nuget](https://img.shields.io/badge/nuget-v1.1.0-purple)](https://www.nuget.org/packages/jSelect.js/)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/williamtroup/Select.js/blob/main/LICENSE.txt)
 [![discussions Welcome](https://img.shields.io/badge/discussions-Welcome-red)](https://github.com/williamtroup/Select.js/discussions)
 [![coded by William Troup](https://img.shields.io/badge/coded_by-William_Troup-yellow)](https://github.com/williamtroup)
@@ -12,15 +12,15 @@
 
 ## What features does Select.js have?
 
-- Zero-dependencies and extremely lightweight!
-- Written in TypeScript, allowing greater support for React, Angular, and other libraries!
-- Maintains existing SELECT DOM element for FORM compatibility.
-- Easily select and de-select your list items, which are shown as tags!
-- Full API available via public functions.
-- Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
-- Full CSS theme support (using :root variables, with a default dark-mode theme).
-- Custom triggers for actions (when elements are rendered, selection is changed, etc).
-- Shortcut keys (click [here](https://github.com/williamtroup/docs/SHORTCUT_KEYS.md) to see the full list).
+- 😏 Zero-dependencies and extremely lightweight!
+- 🦾 Written in TypeScript, allowing greater support for React, Angular, and other libraries!
+- ✏️ Maintains existing SELECT DOM element for FORM compatibility, allowing easy editing.
+- ☑️ Easily select and de-select your list items, which are shown as tags!
+- 💻 Full API available via public functions.
+- 📱 Fully styled in CSS/SASS (including the buttons) and compatible with the Bootstrap library.
+- 🌈 Full CSS theme support (using :root variables, with a default dark-mode theme).
+- 🚀 Custom triggers for actions (when elements are rendered, selection is changed, etc).
+- 🔠 Shortcut keys (click [here](https://github.com/williamtroup/docs/SHORTCUT_KEYS.md) to see the full list).
 
 
 ## What browsers are supported?

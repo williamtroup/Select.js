@@ -157,21 +157,24 @@ var Binding;
             t.render = Default2.getBoolean(t.render, true);
             t.dropDownShowDelay = Default2.getNumber(t.dropDownShowDelay, 50);
             t.showDropDownButton = Default2.getBoolean(t.showDropDownButton, true);
+            t.showRemoveButtonOnLeft = Default2.getBoolean(t.showRemoveButtonOnLeft, false);
             t = i(t);
             t = r(t);
             return t;
         }
         t.get = o;
         function i(e) {
-            e.removeText = Default2.getString(e.removeText, "X");
-            e.noItemsSelectedText = Default2.getString(e.noItemsSelectedText, "There are no items selected");
+            e.text = Default2.getObject(e.text, {});
+            e.text.removeText = Default2.getString(e.text.removeText, "✖");
+            e.text.noItemsSelectedText = Default2.getString(e.text.noItemsSelectedText, "There are no items selected");
             return e;
         }
         function r(e) {
-            e.onRenderComplete = Default2.getFunction(e.onRenderComplete, null);
-            e.onSelectedItemsChanged = Default2.getFunction(e.onSelectedItemsChanged, null);
-            e.onDropDownShow = Default2.getFunction(e.onDropDownShow, null);
-            e.onDropDownHide = Default2.getFunction(e.onDropDownHide, null);
+            e.events = Default2.getObject(e.events, {});
+            e.events.onRenderComplete = Default2.getFunction(e.events.onRenderComplete, null);
+            e.events.onSelectedItemsChanged = Default2.getFunction(e.events.onSelectedItemsChanged, null);
+            e.events.onDropDownShow = Default2.getFunction(e.events.onDropDownShow, null);
+            e.events.onDropDownHide = Default2.getFunction(e.events.onDropDownHide, null);
             return e;
         }
     })(t = e.Options || (e.Options = {}));
@@ -223,8 +226,8 @@ var Config;
                         const o = r(n, t, e);
                         l(o);
                         u(o, false);
-                        a(o);
-                        Trigger.customEvent(e.onRenderComplete, e._currentView.element);
+                        f(o);
+                        Trigger.customEvent(e.events.onRenderComplete, e._currentView.element);
                     }
                 } else {
                     if (!e.safeMode) {
@@ -282,19 +285,19 @@ var Config;
             multiSelectEnabled: n.hasAttribute("multiple")
         };
         if (!o.showDropDownButton) {
-            i.onclick = () => f(s);
+            i.onclick = () => a(s);
         }
         t.push(s);
         return s;
     }
     function s(e) {
         if (e.bindingOptions.showDropDownButton) {
-            const t = DomElement.create("div", "button");
+            const t = DomElement.create("div", "open-close-button");
             e.control.appendChild(t);
             if (p(e)) {
                 t.classList.add("button-open");
             }
-            t.onclick = () => f(e);
+            t.onclick = () => a(e);
         }
     }
     function l(e) {
@@ -348,11 +351,11 @@ var Config;
         }
         if (!i) {
             const t = DomElement.create("div", "no-items-selected");
-            t.innerHTML = e.bindingOptions.noItemsSelectedText;
+            t.innerHTML = e.bindingOptions.text.noItemsSelectedText;
             e.control.appendChild(t);
         }
         if (t) {
-            Trigger.customEvent(e.bindingOptions.onSelectedItemsChanged, m(e));
+            Trigger.customEvent(e.bindingOptions.events.onSelectedItemsChanged, m(e));
         }
     }
     function d(e, t) {
@@ -362,10 +365,14 @@ var Config;
         o.innerHTML = e.select.options[t].text;
         n.appendChild(o);
         if (e.multiSelectEnabled) {
-            const o = DomElement.create("div", "remove");
-            o.innerHTML = e.bindingOptions.removeText;
-            n.appendChild(o);
-            o.onclick = n => {
+            const i = DomElement.create("div", "remove");
+            i.innerHTML = e.bindingOptions.text.removeText;
+            if (e.bindingOptions.showRemoveButtonOnLeft) {
+                n.insertBefore(i, o);
+            } else {
+                n.appendChild(i);
+            }
+            i.onclick = n => {
                 DomElement.cancelBubble(n);
                 e.select.options[t].selected = false;
                 g(e);
@@ -373,19 +380,19 @@ var Config;
             };
         }
     }
-    function a(e) {
+    function f(e) {
         const t = () => g(e);
         document.body.addEventListener("click", t);
         window.addEventListener("resize", t);
         window.addEventListener("click", t);
     }
-    function f(e) {
+    function a(e) {
         if (!p(e)) {
             setTimeout((function() {
                 e.dropDown.style.display = "block";
                 l(e);
                 u(e, false);
-                Trigger.customEvent(e.bindingOptions.onDropDownShow);
+                Trigger.customEvent(e.bindingOptions.events.onDropDownShow);
             }), e.bindingOptions.dropDownShowDelay);
         } else {
             g(e);
@@ -395,7 +402,7 @@ var Config;
         if (e.dropDown !== null && e.dropDown.style.display !== "none") {
             e.dropDown.style.display = "none";
             u(e, false);
-            Trigger.customEvent(e.bindingOptions.onDropDownHide);
+            Trigger.customEvent(e.bindingOptions.events.onDropDownHide);
         }
     }
     function p(e) {
@@ -429,7 +436,7 @@ var Config;
             g(t[n]);
         }
     }
-    const S = {
+    const v = {
         setConfiguration: function(t) {
             if (Is.definedObject(t)) {
                 let n = false;
@@ -444,10 +451,10 @@ var Config;
                     e = Config.Options.get(o);
                 }
             }
-            return S;
+            return v;
         },
         getVersion: function() {
-            return "1.0.0";
+            return "1.1.0";
         }
     };
     (() => {
@@ -457,7 +464,7 @@ var Config;
             D();
         }));
         if (!Is.defined(window.$select)) {
-            window.$select = S;
+            window.$select = v;
         }
     })();
 })();//# sourceMappingURL=select.js.map

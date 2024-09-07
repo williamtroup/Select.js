@@ -1,5 +1,22 @@
 # Select.js - Change Log:
 
+## Version 1.1.0:
+
+#### **Binding Options:**
+- BREAKING: All binding option events are now available under a new area called "events".
+- BREAKING: All binding option text options are now available under a new area called "text".
+- Added a new binding option called "showRemoveButtonOnLeft" (defaults to false), which states if the remove button is shown to the left of the select items text.
+- Updated the default value for "text.removeText" to "✖".
+
+#### **SASS/CSS:**
+- Renamed the CSS class "button" to "open-close-button".
+
+#### **Documentation:**
+- Updates to the README files to make the features stand out.
+
+<br>
+
+
 ## Version 1.0.0:
 
 #### **Language Shift:**
