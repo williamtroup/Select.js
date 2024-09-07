@@ -81,7 +81,7 @@ import { Config } from "./ts/options/config";
                         renderSelectedItems( controlElements, false );
                         buildDocumentEvents( controlElements );
 
-                        Trigger.customEvent( bindingOptions.onRenderComplete!, bindingOptions._currentView.element );
+                        Trigger.customEvent( bindingOptions.events!.onRenderComplete!, bindingOptions._currentView.element );
                     }
 
                 } else {
@@ -245,12 +245,12 @@ import { Config } from "./ts/options/config";
 
         if ( !optionsSelected ) {
             const noItemsSelected: HTMLElement = DomElement.create( "div", "no-items-selected" );
-            noItemsSelected.innerHTML = controlElement.bindingOptions.noItemsSelectedText!;
+            noItemsSelected.innerHTML = controlElement.bindingOptions.text!.noItemsSelectedText!;
             controlElement.control.appendChild( noItemsSelected );
         }
 
         if ( callCustomTrigger ) {
-            Trigger.customEvent( controlElement.bindingOptions.onSelectedItemsChanged!, getValuesSelected( controlElement ) );
+            Trigger.customEvent( controlElement.bindingOptions.events!.onSelectedItemsChanged!, getValuesSelected( controlElement ) );
         }
     }
 
@@ -264,7 +264,7 @@ import { Config } from "./ts/options/config";
 
         if ( controlElement.multiSelectEnabled ) {
             const removeButton: HTMLElement = DomElement.create( "div", "remove" );
-            removeButton.innerHTML = controlElement.bindingOptions.removeText!;
+            removeButton.innerHTML = controlElement.bindingOptions.text!.removeText!;
             selectedItem.appendChild( removeButton );
 
             removeButton.onclick = ( e: MouseEvent ) => {
@@ -294,7 +294,7 @@ import { Config } from "./ts/options/config";
                 renderDropDownItems( controlElement );
                 renderSelectedItems( controlElement, false );
 
-                Trigger.customEvent( controlElement.bindingOptions.onDropDownShow! );
+                Trigger.customEvent( controlElement.bindingOptions.events!.onDropDownShow! );
 
             }, controlElement.bindingOptions.dropDownShowDelay );
 
@@ -309,7 +309,7 @@ import { Config } from "./ts/options/config";
 
             renderSelectedItems( controlElement, false );
 
-            Trigger.customEvent( controlElement.bindingOptions.onDropDownHide! );
+            Trigger.customEvent( controlElement.bindingOptions.events!.onDropDownHide! );
         }
     }
 

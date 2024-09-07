@@ -1,7 +1,10 @@
 # Select.js - Change Log:
 
 ## Version 1.1.0:
-- 
+
+#### **Binding Options:**
+- BREAKING: All binding option events are now available under a new area called "events".
+- BREAKING: All binding option text options are now available under a new area called "text". 
 
 <br>
 

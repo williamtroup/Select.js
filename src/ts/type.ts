@@ -34,8 +34,16 @@ export type BindingOptions = {
     render?: boolean;
     dropDownShowDelay?: number;
     showDropDownButton?: boolean;
+    text?: BindingOptionsText;
+    events?: BindingOptionsEvents;
+};
+
+export type BindingOptionsText = {
     removeText?: string;
     noItemsSelectedText?: string;
+};
+
+export type BindingOptionsEvents = {
     onRenderComplete?: ( element: HTMLElement ) => void;
     onSelectedItemsChanged?: ( selectValues: any[] ) => void;
     onDropDownShow?: ( element: HTMLElement ) => void;

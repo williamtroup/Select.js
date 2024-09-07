@@ -7,7 +7,7 @@ Below is a list of all the custom triggers supported in the "data-select-js" bin
 
 <h1>For Rendering:</h1>
 
-### options.onRenderComplete( *element* ):
+### options.events.onRenderComplete( *element* ):
 Fires when the rendering for a a DOM element is complete.
 <br>
 ***Parameter:*** element: '*object*' - The DOM element that was rendered.
@@ -16,7 +16,7 @@ Fires when the rendering for a a DOM element is complete.
 <br>
 <h1>For Item Selections:</h1>
 
-### options.onSelectedItemsChanged( *values* ):
+### options.events.onSelectedItemsChanged( *values* ):
 Fires when the selected items have changed.
 <br>
 ***Parameter:*** values: '*string[]*' - The values that have been selected.
@@ -25,10 +25,10 @@ Fires when the selected items have changed.
 <br>
 <h1>For Drop-Down Showing/Hiding:</h1>
 
-### options.onDropDownShow():
+### options.events.onDropDownShow():
 Fires when the drop-down menu is shown.
 
-### options.onDropDownHide():
+### options.events.onDropDownHide():
 Fires when the drop-down menu is hidden.
 
 <br>
@@ -37,7 +37,7 @@ Fires when the drop-down menu is hidden.
 ## Binding Example:
 
 ```markdown
-<select multiple="multiple" data-select-js="{ 'onRenderComplete': yourJsFunction }">
+<select multiple="multiple" data-select-js="{ 'events': { 'onRenderComplete': yourJsFunction } }">
     <option value="1" selected="selected">Value 1</option>
     <option value="2">Value 2</option>
     <option value="2">Value 3</option>

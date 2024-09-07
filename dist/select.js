@@ -163,15 +163,17 @@ var Binding;
         }
         t.get = o;
         function i(e) {
-            e.removeText = Default2.getString(e.removeText, "X");
-            e.noItemsSelectedText = Default2.getString(e.noItemsSelectedText, "There are no items selected");
+            e.text = Default2.getObject(e.text, {});
+            e.text.removeText = Default2.getString(e.text.removeText, "X");
+            e.text.noItemsSelectedText = Default2.getString(e.text.noItemsSelectedText, "There are no items selected");
             return e;
         }
         function r(e) {
-            e.onRenderComplete = Default2.getFunction(e.onRenderComplete, null);
-            e.onSelectedItemsChanged = Default2.getFunction(e.onSelectedItemsChanged, null);
-            e.onDropDownShow = Default2.getFunction(e.onDropDownShow, null);
-            e.onDropDownHide = Default2.getFunction(e.onDropDownHide, null);
+            e.events = Default2.getObject(e.events, {});
+            e.events.onRenderComplete = Default2.getFunction(e.events.onRenderComplete, null);
+            e.events.onSelectedItemsChanged = Default2.getFunction(e.events.onSelectedItemsChanged, null);
+            e.events.onDropDownShow = Default2.getFunction(e.events.onDropDownShow, null);
+            e.events.onDropDownHide = Default2.getFunction(e.events.onDropDownHide, null);
             return e;
         }
     })(t = e.Options || (e.Options = {}));
@@ -224,7 +226,7 @@ var Config;
                         l(o);
                         u(o, false);
                         a(o);
-                        Trigger.customEvent(e.onRenderComplete, e._currentView.element);
+                        Trigger.customEvent(e.events.onRenderComplete, e._currentView.element);
                     }
                 } else {
                     if (!e.safeMode) {
@@ -348,11 +350,11 @@ var Config;
         }
         if (!i) {
             const t = DomElement.create("div", "no-items-selected");
-            t.innerHTML = e.bindingOptions.noItemsSelectedText;
+            t.innerHTML = e.bindingOptions.text.noItemsSelectedText;
             e.control.appendChild(t);
         }
         if (t) {
-            Trigger.customEvent(e.bindingOptions.onSelectedItemsChanged, m(e));
+            Trigger.customEvent(e.bindingOptions.events.onSelectedItemsChanged, m(e));
         }
     }
     function d(e, t) {
@@ -363,7 +365,7 @@ var Config;
         n.appendChild(o);
         if (e.multiSelectEnabled) {
             const o = DomElement.create("div", "remove");
-            o.innerHTML = e.bindingOptions.removeText;
+            o.innerHTML = e.bindingOptions.text.removeText;
             n.appendChild(o);
             o.onclick = n => {
                 DomElement.cancelBubble(n);
@@ -385,7 +387,7 @@ var Config;
                 e.dropDown.style.display = "block";
                 l(e);
                 u(e, false);
-                Trigger.customEvent(e.bindingOptions.onDropDownShow);
+                Trigger.customEvent(e.bindingOptions.events.onDropDownShow);
             }), e.bindingOptions.dropDownShowDelay);
         } else {
             g(e);
@@ -395,7 +397,7 @@ var Config;
         if (e.dropDown !== null && e.dropDown.style.display !== "none") {
             e.dropDown.style.display = "none";
             u(e, false);
-            Trigger.customEvent(e.bindingOptions.onDropDownHide);
+            Trigger.customEvent(e.bindingOptions.events.onDropDownHide);
         }
     }
     function p(e) {
@@ -429,7 +431,7 @@ var Config;
             g(t[n]);
         }
     }
-    const S = {
+    const v = {
         setConfiguration: function(t) {
             if (Is.definedObject(t)) {
                 let n = false;
@@ -444,7 +446,7 @@ var Config;
                     e = Config.Options.get(o);
                 }
             }
-            return S;
+            return v;
         },
         getVersion: function() {
             return "1.1.0";
@@ -457,7 +459,7 @@ var Config;
             D();
         }));
         if (!Is.defined(window.$select)) {
-            window.$select = S;
+            window.$select = v;
         }
     })();
 })();//# sourceMappingURL=select.js.map

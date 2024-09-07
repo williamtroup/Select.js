@@ -11,7 +11,12 @@
  */
 
 
-import { type BindingOptionsCurrentView, type BindingOptions } from "../type";
+import {
+    type BindingOptionsCurrentView,
+    type BindingOptions,
+    type BindingOptionsEvents, 
+    type BindingOptionsText } from "../type";
+
 import { Default } from "../data/default";
 
 
@@ -39,17 +44,19 @@ export namespace Binding {
         }
     
         function getText( options: BindingOptions ) : BindingOptions {
-            options.removeText = Default.getString( options.removeText, "X" );
-            options.noItemsSelectedText = Default.getString( options.noItemsSelectedText, "There are no items selected" );
+            options.text = Default.getObject( options.text, {} as BindingOptionsText );
+            options.text!.removeText = Default.getString( options.text!.removeText, "X" );
+            options.text!.noItemsSelectedText = Default.getString( options.text!.noItemsSelectedText, "There are no items selected" );
 
             return options;
         }
     
         function getCustomTriggers( options: BindingOptions ) : BindingOptions {
-            options.onRenderComplete = Default.getFunction( options.onRenderComplete, null! );
-            options.onSelectedItemsChanged = Default.getFunction( options.onSelectedItemsChanged, null! );
-            options.onDropDownShow = Default.getFunction( options.onDropDownShow, null! );
-            options.onDropDownHide = Default.getFunction( options.onDropDownHide, null! );
+            options.events = Default.getObject( options.events, {} as BindingOptionsEvents );
+            options.events!.onRenderComplete = Default.getFunction( options.events!.onRenderComplete, null! );
+            options.events!.onSelectedItemsChanged = Default.getFunction( options.events!.onSelectedItemsChanged, null! );
+            options.events!.onDropDownShow = Default.getFunction( options.events!.onDropDownShow, null! );
+            options.events!.onDropDownHide = Default.getFunction( options.events!.onDropDownHide, null! );
 
             return options;
         }
